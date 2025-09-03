@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title size="large" class="georgian-title">
+      🎮 გამოიცანი ემოჯით
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="menu-content">
+  <div class="menu-container">
+    
+    <!-- Game Title -->
+    <div class="title-section">
+      <h1 class="main-title">🎯 გამოიცანი ემოჯით</h1>
+      <p class="subtitle">აირჩიე კატეგორია და შექმენი რეკორდი!</p>
+    </div>
+
+    <!-- Category Cards -->
+    <div class="categories-grid">
+      
+      <!-- Movies Category -->
+      <ion-card 
+        button 
+        (click)="startGame('movies')" 
+        class="category-card movies-card">
+        <ion-card-content>
+          <div class="card-icon">🎬</div>
+          <h2>ფილმები</h2>
+          <p>Movies</p>
+          <div class="card-description">
+            გამოიცანი ფილმები ემოჯების მიხედვით
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- TV Series Category -->
+      <ion-card 
+        button 
+        (click)="startGame('series')" 
+        class="category-card series-card">
+        <ion-card-content>
+          <div class="card-icon">📺</div>
+          <h2>სერიალები</h2>
+          <p>TV Series</p>
+          <div class="card-description">
+            გამოიცანი სერიალები ემოჯების მიხედვით
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Songs Category -->
+      <ion-card 
+        button 
+        (click)="startGame('songs')" 
+        class="category-card songs-card">
+        <ion-card-content>
+          <div class="card-icon">🎵</div>
+          <h2>სიმღერები</h2>
+          <p>Songs</p>
+          <div class="card-description">
+            გამოიცანი სიმღერები ემოჯების მიხედვით
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+    <!-- High Scores Button -->
+    <div class="footer-section">
+      <ion-button 
+        expand="block" 
+        fill="outline" 
+        color="secondary"
+        (click)="viewHighScores()"
+        class="scores-button">
+        <ion-icon name="trophy-outline" slot="start"></ion-icon>
+        საუკეთესო შედეგები
+      </ion-button>
+    </div>
+
+    <!-- Game Rules -->
+    <div class="rules-section">
+      <h3>თამაშის წესები:</h3>
+      <ul>
+        <li>🎯 გამოიცანი სახელი ემოჯების მიხედვით</li>
+        <li>🪙 იწყებ 100 მონეტით</li>
+        <li>💡 მინიშნება ღირს 10 მონეტა</li>
+        <li>📖 პასუხის ჩვენება ღირს 50 მონეტა</li>
+        <li>✅ სწორი პასუხისთვის იღებ 30 მონეტას</li>
+        <li>🏆 აგროვებ ქულებს სირთულის მიხედვით</li>
+      </ul>
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,196 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goToMenu()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ showScores ? 'საუკეთესო შედეგები' : 'შედეგები' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="result-content">
+
+  <!-- Game Result Section (when not showing high scores) -->
+  <div class="result-container" *ngIf="!showScores && gameState">
+    
+    <!-- Result Header -->
+    <div class="result-header">
+      <div class="result-icon">
+        {{ gameState.gameStatus === 'finished' && gameState.currentQuestionIndex === gameState.questions.length ? '🏆' : '🎮' }}
+      </div>
+      <h1>თამაში დასრულდა!</h1>
+      <p class="result-message">{{ getResultMessage() }}</p>
+    </div>
+
+    <!-- Stats Card -->
+    <ion-card class="stats-card">
+      <ion-card-header>
+        <ion-card-title>
+          {{ getCategoryIcon(gameState.category) }} {{ getCategoryTitle(gameState.category) }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="stats-grid">
+          
+          <div class="stat-item">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-info">
+              <div class="stat-label">საბოლოო ქულა</div>
+              <div class="stat-value">{{ gameState.score }}</div>
+            </div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon">📊</div>
+            <div class="stat-info">
+              <div class="stat-label">პასუხები</div>
+              <div class="stat-value">{{ gameState.currentQuestionIndex }} / {{ gameState.questions.length }}</div>
+            </div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-info">
+              <div class="stat-label">დრო</div>
+              <div class="stat-value">{{ formatTime(Date.now() - gameState.timeStarted.getTime()) }}</div>
+            </div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-icon">🪙</div>
+            <div class="stat-info">
+              <div class="stat-label">დარჩენილი მონეტები</div>
+              <div class="stat-value">{{ gameState.coins }}</div>
+            </div>
+          </div>
+
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <ion-button 
+        expand="block" 
+        color="success"
+        (click)="playAgain()"
+        class="action-button">
+        <ion-icon name="refresh-outline" slot="start"></ion-icon>
+        კიდევ ერთხელ თამაში
+      </ion-button>
+
+      <ion-button 
+        expand="block" 
+        fill="outline" 
+        color="secondary"
+        (click)="changeCategory()"
+        class="action-button">
+        <ion-icon name="swap-horizontal-outline" slot="start"></ion-icon>
+        კატეგორიის შეცვლა
+      </ion-button>
+
+      <ion-button 
+        expand="block" 
+        fill="clear" 
+        color="medium"
+        (click)="showScores = true; loadHighScores()"
+        class="action-button">
+        <ion-icon name="trophy-outline" slot="start"></ion-icon>
+        საუკეთესო შედეგები
+      </ion-button>
+    </div>
+
+  </div>
+
+  <!-- High Scores Section -->
+  <div class="scores-container" *ngIf="showScores">
+    
+    <!-- Category Filter -->
+    <div class="filter-section">
+      <ion-segment 
+        [(ngModel)]="selectedCategory" 
+        (ionChange)="onCategoryChange()"
+        color="primary">
+        <ion-segment-button value="all">
+          <ion-label>ყველა</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="movies">
+          <ion-label>🎬 ფილმები</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="series">
+          <ion-label>📺 სერიალები</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="songs">
+          <ion-label>🎵 სიმღერები</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <!-- Scores List -->
+    <div class="scores-list" *ngIf="highScores.length > 0">
+      <ion-card 
+        *ngFor="let score of highScores; let i = index" 
+        class="score-card"
+        [class]="'rank-' + (i + 1)">
+        <ion-card-content>
+          <div class="score-header">
+            <div class="rank-badge">
+              <span class="rank-number">{{ i + 1 }}</span>
+              <span class="rank-icon" *ngIf="i < 3">
+                {{ i === 0 ? '🏆' : i === 1 ? '🥈' : '🥉' }}
+              </span>
+            </div>
+            <div class="score-info">
+              <div class="score-points">{{ score.score }} ქულა</div>
+              <div class="score-category">
+                {{ getCategoryIcon(score.category) }} {{ getCategoryTitle(score.category) }}
+              </div>
+            </div>
+          </div>
+          <div class="score-details">
+            <div class="score-detail">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              {{ score.questionsAnswered }} პასუხი
+            </div>
+            <div class="score-detail">
+              <ion-icon name="time-outline"></ion-icon>
+              {{ formatTime(score.timeSpent) }}
+            </div>
+            <div class="score-detail">
+              <ion-icon name="calendar-outline"></ion-icon>
+              {{ formatDate(score.date) }}
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- No Scores Message -->
+    <div class="no-scores" *ngIf="highScores.length === 0">
+      <div class="no-scores-icon">🏆</div>
+      <h3>ჯერ არ არის შედეგები</h3>
+      <p>პირველი იყავი და შექმენი რეკორდი!</p>
+      <ion-button 
+        expand="block" 
+        color="primary"
+        (click)="goToMenu()">
+        თამაშის დაწყება
+      </ion-button>
+    </div>
+
+    <!-- Back to Game Button (when viewing scores after game) -->
+    <div class="back-section" *ngIf="gameState">
+      <ion-button 
+        expand="block" 
+        fill="outline" 
+        color="primary"
+        (click)="showScores = false">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        შედეგებზე დაბრუნება
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>

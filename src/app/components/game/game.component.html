@@ -1,0 +1,187 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBackToMenu()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ categoryTitle }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToMainPage()">
+        <ion-icon name="home-outline" slot="start"></ion-icon>
+        მთავარი
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="game-content" *ngIf="gameState">
+  
+  <!-- Game Status Bar -->
+  <div class="status-bar">
+    
+    <!-- Progress -->
+    <div class="progress-section">
+      <div class="progress-label">
+        კითხვა {{ gameState.currentQuestionIndex + 1 }} / {{ gameState.questions.length }}
+      </div>
+      <ion-progress-bar 
+        [value]="getProgressPercentage() / 100" 
+        color="secondary">
+      </ion-progress-bar>
+    </div>
+
+    <!-- Coins and Score -->
+    <div class="stats-row">
+      <div class="coins-section">
+        <span class="coins-label">🪙 მონეტები:</span>
+        <span class="coins-value">{{ gameState.coins }}</span>
+      </div>
+      
+      <div class="score-section">
+        <span class="score-label">ქულა:</span>
+        <span class="score-value">{{ gameState.score }}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Question Section -->
+  <div class="question-container" *ngIf="gameState.currentQuestion">
+    
+    <!-- Emoji Display -->
+    <div class="emoji-display">
+      <div class="emoji-text" [class.long-sequence]="isLongEmojiSequence()">{{ gameState.currentQuestion.emojis }}</div>
+      <div class="difficulty-badge" [class]="'difficulty-' + gameState.currentQuestion.difficulty">
+        {{ getDifficultyText(gameState.currentQuestion.difficulty) }}
+      </div>
+    </div>
+
+    <!-- Hint Section -->
+    <div class="hint-section" *ngIf="showHint">
+      <ion-card class="hint-card">
+        <ion-card-content>
+          <div class="hint-header">
+            <div class="hint-icon">💡</div>
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              (click)="closeHint(); $event.stopPropagation()"
+              class="close-button">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </div>
+          <div class="hint-text">{{ currentHint }}</div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Revealed Answer Section -->
+    <div class="answer-reveal-section" *ngIf="showRevealedAnswer">
+      <ion-card class="answer-reveal-card">
+        <ion-card-content>
+          <div class="answer-header">
+            <div class="answer-icon">📖</div>
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              (click)="closeRevealedAnswer()"
+              class="close-button">
+              <ion-icon name="close-outline" style="color: white;"></ion-icon>
+            </ion-button>
+          </div>
+          <div class="answer-label">პასუხი:</div>
+          <div class="answer-text">{{ revealedAnswer }}</div>
+          
+          <!-- Next Question Button -->
+          <ion-button 
+            class="next-question-button"
+            expand="block" 
+            (click)="goToNextQuestion()"
+            color="success">
+            შემდეგი კითხვა ➡️
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Answer Input - Only show when hint and revealed answer are not shown -->
+    <div class="answer-section" *ngIf="!showHint && !showRevealedAnswer">
+      <ion-item lines="none" class="answer-input">
+        <ion-label position="stacked">შენი პასუხი:</ion-label>
+        <ion-input 
+          [(ngModel)]="userAnswer"
+          (keydown.enter)="submitAnswer()"
+          placeholder="დაწერე პასუხი აქ..."
+          clearInput="true">
+        </ion-input>
+      </ion-item>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons" *ngIf="!showRevealedAnswer">
+      
+      <!-- Action Buttons Row -->
+      <div class="action-buttons">
+        <!-- Hint Button -->
+        <ion-button 
+          fill="outline" 
+          color="warning"
+          (click)="useHint()"
+          [disabled]="getHintsLeft() === 0 || showHint || !canAffordHint()"
+          class="hint-button">
+          <ion-icon name="bulb-outline" slot="start"></ion-icon>
+          მინიშნება ({{ getHintsLeft() }}) - 10🪙
+        </ion-button>
+
+        <!-- Show Answer Button -->
+        <ion-button 
+          fill="outline" 
+          color="danger"
+          (click)="showAnswer()"
+          [disabled]="!canAffordShowAnswer()"
+          class="show-answer-button">
+          <ion-icon name="book-outline" slot="start"></ion-icon>
+          პასუხი - 50🪙
+        </ion-button>
+      </div>
+
+      <!-- Submit Button -->
+      <ion-button 
+        expand="block" 
+        color="success"
+        (click)="submitAnswer()"
+        [disabled]="!userAnswer.trim()"
+        class="submit-button">
+        <ion-icon name="checkmark-outline" slot="start"></ion-icon>
+        პასუხის გაგზავნა
+      </ion-button>
+      
+    </div>
+
+  </div>
+
+  <!-- Game Over State -->
+  <div class="game-over-container" *ngIf="gameState.gameStatus === 'finished'">
+    <div class="game-over-content">
+      <div class="game-over-icon">🎮</div>
+      <h2>თამაში დასრულდა!</h2>
+      <p>შენი საბოლოო ქულა: <strong>{{ gameState.score }}</strong></p>
+      <ion-button 
+        expand="block" 
+        color="primary"
+        (click)="goBackToMenu()">
+        მთავარ მენიუში დაბრუნება
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>
+
+<!-- Loading State -->
+<ion-content *ngIf="!gameState" class="loading-content">
+  <div class="loading-container">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>თამაში იტვირთება...</p>
+  </div>
+</ion-content>

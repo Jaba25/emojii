@@ -1,0 +1,192 @@
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Custom Global Styles */
+body {
+  font-family: 'Noto Sans Georgian', 'DejaVu Sans', sans-serif;
+  /* Force light background for all platforms */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  --ion-background-color: #ffffff !important;
+  --ion-background-color-rgb: 255, 255, 255 !important;
+  --ion-text-color: #000000 !important;
+  --ion-text-color-rgb: 0, 0, 0 !important;
+}
+
+/* Override any dark mode settings */
+.ios body,
+.md body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  --ion-background-color: #ffffff !important;
+  --ion-background-color-rgb: 255, 255, 255 !important;
+  --ion-text-color: #000000 !important;
+  --ion-text-color-rgb: 0, 0, 0 !important;
+}
+
+.georgian-text {
+  font-family: 'Noto Sans Georgian', 'DejaVu Sans', sans-serif;
+  font-feature-settings: "kern" on;
+}
+
+/* Custom Colors */
+:root {
+  --emoji-primary: #667eea;
+  --emoji-secondary: #764ba2;
+  --emoji-success: #2dd36f;
+  --emoji-warning: #ffc409;
+  --emoji-danger: #eb445a;
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease;
+}
+
+.bounce-in {
+  animation: bounceIn 0.8s ease;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  /* Mobile font sizes */
+  body {
+    font-size: 14px;
+  }
+  
+  /* Header adjustments */
+  ion-toolbar {
+    --min-height: 56px;
+    padding: 0 8px;
+  }
+  
+  ion-title {
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+  
+  /* Button optimizations for touch */
+  ion-button {
+    --border-radius: 12px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    min-height: 44px; /* Apple's recommended touch target size */
+  }
+  
+  /* Card spacing for mobile */
+  ion-card {
+    margin: 8px;
+    border-radius: 16px;
+  }
+  
+  /* Input field optimizations */
+  ion-input {
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+  }
+  
+  /* Emoji display optimization */
+  .emoji-text {
+    font-size: 3em !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small mobile devices */
+  body {
+    font-size: 13px;
+  }
+  
+  ion-toolbar {
+    --min-height: 52px;
+    padding: 0 4px;
+  }
+  
+  ion-title {
+    font-size: 1em;
+  }
+  
+  /* Smaller margins for very small screens */
+  ion-card {
+    margin: 4px;
+  }
+  
+  /* Smaller emoji for small screens */
+  .emoji-text {
+    font-size: 2.5em !important;
+  }
+}
+
+/* Android specific optimizations */
+.md {
+  /* Material Design button adjustments */
+  ion-button {
+    --border-radius: 8px;
+    font-weight: 500;
+  }
+  
+  /* Material Design card shadows */
+  ion-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "series": [
+    {
+      "id": 1,
+      "emojis": "👑🐉🗡️",
+      "answer": "Game of Thrones",
+      "difficulty": "easy",
+      "hints": ["HBO fantasy series", "Iron Throne", "Winter is coming"]
+    },
+    {
+      "id": 2,
+      "emojis": "🧪👨‍🔬💊",
+      "answer": "Breaking Bad",
+      "difficulty": "medium",
+      "hints": ["Chemistry teacher", "Walter White", "Say my name"]
+    },
+    {
+      "id": 3,
+      "emojis": "☕👥🏢",
+      "answer": "Friends",
+      "difficulty": "easy",
+      "hints": ["Six friends in New York", "Central Perk", "We were on a break"]
+    },
+    {
+      "id": 4,
+      "emojis": "🏃‍♂️👮‍♂️🚔",
+      "answer": "The Walking Dead",
+      "difficulty": "medium",
+      "hints": ["Zombie apocalypse", "Rick Grimes", "Don't look back"]
+    },
+    {
+      "id": 5,
+      "emojis": "🕵️‍♂️🔍🏠",
+      "answer": "Sherlock",
+      "difficulty": "medium",
+      "hints": ["British detective", "Benedict Cumberbatch", "Elementary my dear Watson"]
+    },
+    {
+      "id": 6,
+      "emojis": "🏢📊👔",
+      "answer": "The Office",
+      "difficulty": "easy",
+      "hints": ["Mockumentary sitcom", "Dunder Mifflin", "That's what she said"]
+    },
+    {
+      "id": 7,
+      "emojis": "🔥⚔️🏰",
+      "answer": "The Witcher",
+      "difficulty": "hard",
+      "hints": ["Henry Cavill", "Geralt of Rivia", "Toss a coin to your witcher"]
+    },
+    {
+      "id": 8,
+      "emojis": "🚀👽🛸",
+      "answer": "Stranger Things",
+      "difficulty": "medium",
+      "hints": ["Netflix sci-fi", "Upside Down", "Eleven has superpowers"]
+    },
+    {
+      "id": 9,
+      "emojis": "💰🏦🎭",
+      "answer": "Money Heist",
+      "difficulty": "medium",
+      "hints": ["Spanish series", "Professor's plan", "Bella Ciao"]
+    },
+    {
+      "id": 10,
+      "emojis": "🦸‍♂️⚡💀",
+      "answer": "The Boys",
+      "difficulty": "hard",
+      "hints": ["Dark superhero series", "Corrupt superheroes", "Amazon Prime"]
+    },
+    {
+      "id": 11,
+      "emojis": "👨‍⚕️🏥💊",
+      "answer": "House",
+      "difficulty": "medium",
+      "hints": ["Medical drama", "Dr. Gregory House", "It's never lupus"]
+    },
+    {
+      "id": 12,
+      "emojis": "🎪🤹‍♂️🎭",
+      "answer": "The Big Bang Theory",
+      "difficulty": "easy",
+      "hints": ["Scientists comedy", "Sheldon Cooper", "Bazinga"]
+    },
+    {
+      "id": 13,
+      "emojis": "🐺⚔️🌙",
+      "answer": "The Vampire Diaries",
+      "difficulty": "medium",
+      "hints": ["Supernatural romance", "Mystic Falls", "Stefan and Damon"]
+    },
+    {
+      "id": 14,
+      "emojis": "👑📺🏰",
+      "answer": "The Crown",
+      "difficulty": "hard",
+      "hints": ["British Royal Family", "Netflix historical drama", "Queen Elizabeth II"]
+    },
+    {
+      "id": 15,
+      "emojis": "🎬🌟💫",
+      "answer": "Black Mirror",
+      "difficulty": "hard",
+      "hints": ["Anthology series", "Technology dystopia", "Charlie Brooker"]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "songs": [
+    {
+      "id": 1,
+      "emojis": "👑🐝",
+      "answer": "Queen Bee",
+      "difficulty": "easy",
+      "artist": "Beyoncé",
+      "hints": ["Beyoncé song", "Female empowerment", "Royalty theme"]
+    },
+    {
+      "id": 2,
+      "emojis": "🌙👶",
+      "answer": "Baby One More Time",
+      "difficulty": "medium",
+      "artist": "Britney Spears",
+      "hints": ["Britney Spears debut", "Hit me", "1999 pop hit"]
+    },
+    {
+      "id": 3,
+      "emojis": "🎵🎤🌟",
+      "answer": "Bohemian Rhapsody",
+      "difficulty": "hard",
+      "artist": "Queen",
+      "hints": ["Queen masterpiece", "Freddie Mercury", "Is this the real life?"]
+    },
+    {
+      "id": 4,
+      "emojis": "🕺💃🌙",
+      "answer": "Billie Jean",
+      "difficulty": "medium",
+      "artist": "Michael Jackson",
+      "hints": ["Michael Jackson", "Moonwalk dance", "The kid is not my son"]
+    },
+    {
+      "id": 5,
+      "emojis": "❄️🏰👸",
+      "answer": "Let It Go",
+      "difficulty": "easy",
+      "artist": "Idina Menzel",
+      "hints": ["Frozen soundtrack", "Elsa's song", "Disney anthem"]
+    },
+    {
+      "id": 6,
+      "emojis": "🌈🦄✨",
+      "answer": "Roar",
+      "difficulty": "easy",
+      "artist": "Katy Perry",
+      "hints": ["Katy Perry empowerment", "I got the eye of the tiger", "Self-confidence anthem"]
+    },
+    {
+      "id": 7,
+      "emojis": "💔💧😢",
+      "answer": "Someone Like You",
+      "difficulty": "medium",
+      "artist": "Adele",
+      "hints": ["Adele ballad", "Never mind I'll find", "Heartbreak song"]
+    },
+    {
+      "id": 8,
+      "emojis": "🎸⚡🔥",
+      "answer": "Thunderstruck",
+      "difficulty": "hard",
+      "artist": "AC/DC",
+      "hints": ["AC/DC rock anthem", "Thunder and lightning", "Hard rock classic"]
+    },
+    {
+      "id": 9,
+      "emojis": "💰🎵💎",
+      "answer": "Can't Stop the Feeling",
+      "difficulty": "medium",
+      "artist": "Justin Timberlake",
+      "hints": ["Justin Timberlake", "Trolls soundtrack", "Feel-good pop song"]
+    },
+    {
+      "id": 10,
+      "emojis": "🌍🌎🌏",
+      "answer": "We Are the World",
+      "difficulty": "hard",
+      "artist": "USA for Africa",
+      "hints": ["Charity single", "Multiple artists", "1985 humanitarian song"]
+    },
+    {
+      "id": 11,
+      "emojis": "🚀👨‍🚀⭐",
+      "answer": "Space Oddity",
+      "difficulty": "hard",
+      "artist": "David Bowie",
+      "hints": ["David Bowie", "Major Tom", "Ground control to"]
+    },
+    {
+      "id": 12,
+      "emojis": "😊😍💕",
+      "answer": "Happy",
+      "difficulty": "easy",
+      "artist": "Pharrell Williams",
+      "hints": ["Pharrell Williams", "Despicable Me soundtrack", "Because I'm happy"]
+    },
+    {
+      "id": 13,
+      "emojis": "🌟💫✨",
+      "answer": "Shake It Off",
+      "difficulty": "easy",
+      "artist": "Taylor Swift",
+      "hints": ["Taylor Swift", "Haters gonna hate", "I shake it off"]
+    },
+    {
+      "id": 14,
+      "emojis": "🏃‍♂️💨🎵",
+      "answer": "Uptown Funk",
+      "difficulty": "medium",
+      "artist": "Mark Ronson ft. Bruno Mars",
+      "hints": ["Bruno Mars collaboration", "Don't believe me just watch", "Funk anthem"]
+    },
+    {
+      "id": 15,
+      "emojis": "🌊🏄‍♂️🎸",
+      "answer": "Hotel California",
+      "difficulty": "hard",
+      "artist": "Eagles",
+      "hints": ["Eagles classic", "You can check out any time", "1976 rock masterpiece"]
+    }
+  ]
+}

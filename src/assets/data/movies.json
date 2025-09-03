@@ -1,0 +1,144 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "emojis": "🦁👑",
+      "answer": "The Lion King",
+      "difficulty": "easy",
+      "hints": ["Disney animated movie", "African savanna setting", "Young lion prince named Simba"]
+    },
+    {
+      "id": 2,
+      "emojis": "🕷️👨‍🎓",
+      "answer": "Spider-Man",
+      "difficulty": "easy",
+      "hints": ["Marvel superhero", "Peter Parker", "Web-slinging abilities"]
+    },
+    {
+      "id": 3,
+      "emojis": "🚢❄️💎",
+      "answer": "Titanic",
+      "difficulty": "medium",
+      "hints": ["1997 romantic drama", "Leonardo DiCaprio", "Unsinkable ship"]
+    },
+    {
+      "id": 4,
+      "emojis": "👻🏠📞",
+      "answer": "Scream",
+      "difficulty": "medium",
+      "hints": ["Horror movie", "Masked killer", "What's your favorite scary movie?"]
+    },
+    {
+      "id": 5,
+      "emojis": "🎪🃏🦇",
+      "answer": "The Dark Knight",
+      "difficulty": "hard",
+      "hints": ["Batman movie", "Heath Ledger as villain", "Why so serious?"]
+    },
+    {
+      "id": 6,
+      "emojis": "👦⚡🧙‍♂️",
+      "answer": "Harry Potter",
+      "difficulty": "easy",
+      "hints": ["Boy wizard", "Hogwarts School", "The Chosen One"]
+    },
+    {
+      "id": 7,
+      "emojis": "🐠🔍",
+      "answer": "Finding Nemo",
+      "difficulty": "easy",
+      "hints": ["Pixar animated movie", "Lost clownfish", "Just keep swimming"]
+    },
+    {
+      "id": 8,
+      "emojis": "🤖🚀⭐",
+      "answer": "Star Wars",
+      "difficulty": "medium",
+      "hints": ["Space epic", "Force powers", "Luke Skywalker"]
+    },
+    {
+      "id": 9,
+      "emojis": "🕰️⚡🚗",
+      "answer": "Back to the Future",
+      "difficulty": "medium",
+      "hints": ["Time travel", "DeLorean car", "Marty McFly"]
+    },
+    {
+      "id": 10,
+      "emojis": "💍🗻🧙‍♂️",
+      "answer": "The Lord of the Rings",
+      "difficulty": "hard",
+      "hints": ["Fantasy epic", "Middle-earth", "One ring to rule them all"]
+    },
+    {
+      "id": 11,
+      "emojis": "🦖🏞️🔬",
+      "answer": "Jurassic Park",
+      "difficulty": "medium",
+      "hints": ["Dinosaurs brought back to life", "Steven Spielberg", "Life finds a way"]
+    },
+    {
+      "id": 12,
+      "emojis": "👸❄️⛄",
+      "answer": "Frozen",
+      "difficulty": "easy",
+      "hints": ["Disney animated", "Ice queen", "Let it go"]
+    },
+    {
+      "id": 13,
+      "emojis": "🎯🏹👨‍🦯",
+      "answer": "The Hunger Games",
+      "difficulty": "medium",
+      "hints": ["Dystopian future", "Katniss Everdeen", "May the odds be ever in your favor"]
+    },
+    {
+      "id": 14,
+      "emojis": "🦈🏖️👥",
+      "answer": "Jaws",
+      "difficulty": "hard",
+      "hints": ["Steven Spielberg thriller", "Great white shark", "You're gonna need a bigger boat"]
+    },
+    {
+      "id": 15,
+      "emojis": "🎭😄😢",
+      "answer": "Inside Out",
+      "difficulty": "easy",
+      "hints": ["Pixar movie about emotions", "Riley's mind", "Joy and Sadness"]
+    },
+    {
+      "id": 16,
+      "emojis": "🏃‍♂️💨🪶",
+      "answer": "Forrest Gump",
+      "difficulty": "medium",
+      "hints": ["Tom Hanks", "Run Forrest Run", "Life is like a box of chocolates"]
+    },
+    {
+      "id": 17,
+      "emojis": "🤡🎈🎪",
+      "answer": "It",
+      "difficulty": "hard",
+      "hints": ["Stephen King horror", "Pennywise the clown", "We all float down here"]
+    },
+    {
+      "id": 18,
+      "emojis": "👻💕🎭",
+      "answer": "The Phantom of the Opera",
+      "difficulty": "hard",
+      "hints": ["Musical romance", "Opera house", "Mask-wearing phantom"]
+    },
+    {
+      "id": 19,
+      "emojis": "🚗🏎️💨",
+      "answer": "Fast and Furious",
+      "difficulty": "medium",
+      "hints": ["Action franchise", "Street racing", "Family is everything"]
+    },
+    {
+      "id": 20,
+      "emojis": "🦸‍♀️⚔️🏝️",
+      "answer": "Wonder Woman",
+      "difficulty": "medium",
+      "hints": ["DC superhero", "Amazon warrior princess", "Gal Gadot"]
+    }
+  ]
+}

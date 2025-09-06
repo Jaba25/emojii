@@ -5,7 +5,7 @@
 }
 
 .result-container, .scores-container {
-  padding: 20px;
+  padding: 80px 20px 20px 20px; /* Added top padding to account for header */
   max-width: 600px;
   margin: 0 auto;
 }
@@ -273,5 +273,22 @@
 
   .score-details {
     justify-content: space-between;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767px) {
+  .result-container, .scores-container {
+    padding: 70px 15px 20px 15px; /* Adjusted for mobile header */
+  }
+
+  .result-header {
+    .result-icon {
+      font-size: 3em; /* Slightly smaller on mobile */
+    }
+
+    h1 {
+      font-size: 1.8em; /* Adjusted for mobile */
+    }
   }
 }

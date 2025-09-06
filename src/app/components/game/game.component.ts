@@ -21,7 +21,9 @@ export class GameComponent implements OnInit, OnDestroy {
   gameState: GameState | null = null;
   userAnswer = '';
   currentHint = '';
+  currentHintLevel: 'easy' | 'medium' | 'hard' | null = null;
   showHint = false;
+  showHintOptions = false;
   revealedAnswer = '';
   showRevealedAnswer = false;
   category: GameCategory = 'movies';
@@ -92,12 +94,49 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  useHint(): void {
-    const hint = this.gameService.useHint();
+  useHint(level?: 'easy' | 'medium' | 'hard'): void {
+    if (!level) {
+      // Legacy method - just show hint options
+      this.showHintOptions = true;
+      return;
+    }
+
+    if (!this.gameState?.currentQuestion || !this.canUseHint(level)) {
+      return;
+    }
+
+    const hint = this.gameService.useHint(level);
     if (hint) {
       this.currentHint = hint;
+      this.currentHintLevel = level;
       this.showHint = true;
+      this.showHintOptions = false;
     }
+  }
+
+  canUseHint(level: 'easy' | 'medium' | 'hard'): boolean {
+    if (!this.gameState) return false;
+    
+    // Check if this specific hint level has already been used
+    const alreadyUsed = this.gameState.usedHints[level];
+    if (alreadyUsed) return false;
+    
+    // Check if user has enough coins
+    const costs = { easy: 10, medium: 20, hard: 30 };
+    return this.gameState.coins >= costs[level];
+  }
+
+  getHintLevelText(): string {
+    switch (this.currentHintLevel) {
+      case 'easy': return 'მარტივი მინიშნება';
+      case 'medium': return 'საშუალო მინიშნება';
+      case 'hard': return 'რთული მინიშნება';
+      default: return 'მინიშნება';
+    }
+  }
+
+  closeHintOptions(): void {
+    this.showHintOptions = false;
   }
 
   private async showSuccess(): Promise<void> {
@@ -196,7 +235,12 @@ export class GameComponent implements OnInit, OnDestroy {
 
   getHintsLeft(): number {
     if (!this.gameState) return 3;
-    return 3 - this.gameState.usedHints;
+    const used = this.gameState.usedHints;
+    let count = 0;
+    if (!used.easy) count++;
+    if (!used.medium) count++;
+    if (!used.hard) count++;
+    return count;
   }
 
   getDifficultyText(difficulty: string): string {
@@ -212,6 +256,6 @@ export class GameComponent implements OnInit, OnDestroy {
     if (!this.gameState?.currentQuestion?.emojis) return false;
     // Count the number of emoji characters (rough estimation)
     const emojiCount = this.gameState.currentQuestion.emojis.length;
-    return emojiCount > 15; // Consider it long if more than 15 characters (roughly 8+ emojis)
+    return emojiCount > 12; // Consider it long if more than 12 characters (roughly 6+ emojis)
   }
 }

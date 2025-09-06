@@ -3,107 +3,167 @@
     {
       "id": 1,
       "emojis": "👑🐉🗡️",
-      "answer": "Game of Thrones",
+      "answer": "თოვლისფერთა ზღაპარი",
       "difficulty": "easy",
-      "hints": ["HBO fantasy series", "Iron Throne", "Winter is coming"]
+      "hints": {
+        "easy": "HBO-ს ფენტეზი სერიალი",
+        "medium": "რკინის ტახტი",
+        "hard": "ზამთარი მოდის"
+      }
     },
     {
       "id": 2,
       "emojis": "🧪👨‍🔬💊",
-      "answer": "Breaking Bad",
+      "answer": "კეთილის გაფუჭება",
       "difficulty": "medium",
-      "hints": ["Chemistry teacher", "Walter White", "Say my name"]
+      "hints": {
+        "easy": "ქიმიის მასწავლებელი",
+        "medium": "უოლტერ უაითი",
+        "hard": "თქვი ჩემი სახელი"
+      }
     },
     {
       "id": 3,
       "emojis": "☕👥🏢",
-      "answer": "Friends",
+      "answer": "მეგობრები",
       "difficulty": "easy",
-      "hints": ["Six friends in New York", "Central Perk", "We were on a break"]
+      "hints": {
+        "easy": "ექვსი მეგობარი ნიუ-იორკში",
+        "medium": "ცენტრალ პერკი",
+        "hard": "ჩვენ შესვენებაზე ვიყავით"
+      }
     },
     {
       "id": 4,
       "emojis": "🏃‍♂️👮‍♂️🚔",
-      "answer": "The Walking Dead",
+      "answer": "მოსიარულე მკვდრები",
       "difficulty": "medium",
-      "hints": ["Zombie apocalypse", "Rick Grimes", "Don't look back"]
+      "hints": {
+        "easy": "ზომბი აპოკალიფსი",
+        "medium": "რიკ გრაიმსი",
+        "hard": "ნუ უკან იხედავ"
+      }
     },
     {
       "id": 5,
       "emojis": "🕵️‍♂️🔍🏠",
-      "answer": "Sherlock",
+      "answer": "შერლოკი",
       "difficulty": "medium",
-      "hints": ["British detective", "Benedict Cumberbatch", "Elementary my dear Watson"]
+      "hints": {
+        "easy": "ბრიტანული დეტექტივი",
+        "medium": "ბენედიქტ კამბერბატჩი",
+        "hard": "ელემენტარული ჩემო ძვირფასო უოტსონ"
+      }
     },
     {
       "id": 6,
       "emojis": "🏢📊👔",
-      "answer": "The Office",
+      "answer": "ოფისი",
       "difficulty": "easy",
-      "hints": ["Mockumentary sitcom", "Dunder Mifflin", "That's what she said"]
+      "hints": {
+        "easy": "მოკუმენტარული კომედია",
+        "medium": "დუნდერ მიფლინი",
+        "hard": "ეს არის ის რასაც ის თქვა"
+      }
     },
     {
       "id": 7,
       "emojis": "🔥⚔️🏰",
-      "answer": "The Witcher",
+      "answer": "ჯადოქარი",
       "difficulty": "hard",
-      "hints": ["Henry Cavill", "Geralt of Rivia", "Toss a coin to your witcher"]
+      "hints": {
+        "easy": "ჰენრი კავილი",
+        "medium": "რივიის გერალტი",
+        "hard": "ჩააგდე მონეტა შენს ჯადოქარს"
+      }
     },
     {
       "id": 8,
       "emojis": "🚀👽🛸",
-      "answer": "Stranger Things",
+      "answer": "უცნაური რამები",
       "difficulty": "medium",
-      "hints": ["Netflix sci-fi", "Upside Down", "Eleven has superpowers"]
+      "hints": {
+        "easy": "Netflix-ის ფანტასტიკა",
+        "medium": "ქვევით სამყარო",
+        "hard": "თერთმეტს აქვს ზესუნართიშაუნება"
+      }
     },
     {
       "id": 9,
       "emojis": "💰🏦🎭",
-      "answer": "Money Heist",
+      "answer": "ფულის ძარცვა",
       "difficulty": "medium",
-      "hints": ["Spanish series", "Professor's plan", "Bella Ciao"]
+      "hints": {
+        "easy": "ესპანური სერიალი",
+        "medium": "პროფესორის გეგმა",
+        "hard": "ბელა ჩაო"
+      }
     },
     {
       "id": 10,
       "emojis": "🦸‍♂️⚡💀",
-      "answer": "The Boys",
+      "answer": "ბიჭები",
       "difficulty": "hard",
-      "hints": ["Dark superhero series", "Corrupt superheroes", "Amazon Prime"]
+      "hints": {
+        "easy": "მუქი სუპერგმირების სერიალი",
+        "medium": "კორუმპირებული სუპერგმირები",
+        "hard": "ამაზონ პრაიმი"
+      }
     },
     {
       "id": 11,
       "emojis": "👨‍⚕️🏥💊",
-      "answer": "House",
+      "answer": "ჰაუსი",
       "difficulty": "medium",
-      "hints": ["Medical drama", "Dr. Gregory House", "It's never lupus"]
+      "hints": {
+        "easy": "სამედიცინო დრამა",
+        "medium": "დოქტორი გრეგორი ჰაუსი",
+        "hard": "ეს არასდროს არის ლუპუსი"
+      }
     },
     {
       "id": 12,
       "emojis": "🎪🤹‍♂️🎭",
-      "answer": "The Big Bang Theory",
+      "answer": "დიდი აფეთქების თეორია",
       "difficulty": "easy",
-      "hints": ["Scientists comedy", "Sheldon Cooper", "Bazinga"]
+      "hints": {
+        "easy": "მეცნიერების კომედია",
+        "medium": "შელდონ კუპერი",
+        "hard": "ბაზინგა"
+      }
     },
     {
       "id": 13,
       "emojis": "🐺⚔️🌙",
-      "answer": "The Vampire Diaries",
+      "answer": "ვამპირის დღიურები",
       "difficulty": "medium",
-      "hints": ["Supernatural romance", "Mystic Falls", "Stefan and Damon"]
+      "hints": {
+        "easy": "ზებუნებრივი რომანსი",
+        "medium": "მისტიკ ფოლსი",
+        "hard": "სტეფანი და დეიმონი"
+      }
     },
     {
       "id": 14,
       "emojis": "👑📺🏰",
-      "answer": "The Crown",
+      "answer": "გვირგვინი",
       "difficulty": "hard",
-      "hints": ["British Royal Family", "Netflix historical drama", "Queen Elizabeth II"]
+      "hints": {
+        "easy": "ბრიტანული სამეფო ოჯახი",
+        "medium": "Netflix-ის ისტორიული დრამა",
+        "hard": "დედოფალი ელისაბედ II"
+      }
     },
     {
       "id": 15,
       "emojis": "🎬🌟💫",
-      "answer": "Black Mirror",
+      "answer": "შავი სარკე",
       "difficulty": "hard",
-      "hints": ["Anthology series", "Technology dystopia", "Charlie Brooker"]
+      "hints": {
+        "easy": "ანთოლოგიური სერიალი",
+        "medium": "ტექნოლოგიური დისტოპია",
+        "hard": "ჩარლი ბრუკერი"
+      }
     }
   ]
 }

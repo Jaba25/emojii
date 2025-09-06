@@ -3,7 +3,11 @@ export interface Question {
   emojis: string;
   answer: string;
   difficulty: 'easy' | 'medium' | 'hard';
-  hints: string[];
+  hints: {
+    easy: string;    // 10 coins - general clue
+    medium: string;  // 20 coins - specific clue  
+    hard: string;    // 30 coins - strong clue
+  };
   artist?: string; // For songs
 }
 
@@ -12,7 +16,11 @@ export interface GameState {
   currentQuestionIndex: number;
   score: number;
   coins: number;
-  usedHints: number;
+  usedHints: {
+    easy: boolean;
+    medium: boolean;
+    hard: boolean;
+  };
   timeStarted: Date;
   category: GameCategory;
   questions: Question[];
@@ -37,7 +45,11 @@ export interface GameConfig {
     medium: number;
     hard: number;
   };
-  hintCost: number;
+  hintCost: {
+    easy: number;    // 10 coins
+    medium: number;  // 20 coins
+    hard: number;    // 30 coins
+  };
   showAnswerCost: number;
   correctAnswerReward: number;
 }

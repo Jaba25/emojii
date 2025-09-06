@@ -16,7 +16,11 @@ export class GameService {
       medium: 20,
       hard: 30
     },
-    hintCost: 10,
+    hintCost: {
+      easy: 10,
+      medium: 20,
+      hard: 30
+    },
     showAnswerCost: 50,
     correctAnswerReward: 30
   };
@@ -26,7 +30,7 @@ export class GameService {
     currentQuestionIndex: 0,
     score: 0,
     coins: this.gameConfig.startingCoins,
-    usedHints: 0,
+    usedHints: { easy: false, medium: false, hard: false },
     timeStarted: new Date(),
     category: 'movies',
     questions: [],
@@ -46,7 +50,7 @@ export class GameService {
         currentQuestionIndex: 0,
         score: 0,
         coins: this.gameConfig.startingCoins,
-        usedHints: 0,
+        usedHints: { easy: false, medium: false, hard: false },
         timeStarted: new Date(),
         category,
         questions,
@@ -91,7 +95,7 @@ export class GameService {
     const finalScore = Math.max(baseScore, 1);
     const coinReward = this.gameConfig.correctAnswerReward;
 
-    this.moveToNextQuestion(currentState.score + finalScore, currentState.coins + coinReward, 0);
+    this.moveToNextQuestion(currentState.score + finalScore, currentState.coins + coinReward);
   }
 
   private handleIncorrectAnswer(): void {
@@ -101,13 +105,13 @@ export class GameService {
     
     const updatedState: GameState = {
       ...currentState,
-      usedHints: 0 // Reset hints for retry
+      usedHints: { easy: false, medium: false, hard: false } // Reset hints for retry
     };
     
     this.updateGameState(updatedState);
   }
 
-  private moveToNextQuestion(newScore: number, newCoins: number, usedHints: number): void {
+  private moveToNextQuestion(newScore: number, newCoins: number): void {
     const currentState = this.gameStateSubject.value;
     const nextIndex = currentState.currentQuestionIndex + 1;
     
@@ -120,28 +124,31 @@ export class GameService {
         currentQuestionIndex: nextIndex,
         score: newScore,
         coins: newCoins,
-        usedHints
+        usedHints: { easy: false, medium: false, hard: false } // Reset hints for new question
       };
       
       this.updateGameState(updatedState);
     }
   }
 
-  useHint(): string | null {
+  useHint(level: 'easy' | 'medium' | 'hard'): string | null {
     const currentState = this.gameStateSubject.value;
     
     if (!currentState.currentQuestion || 
-        currentState.usedHints >= this.gameConfig.hintsPerQuestion ||
         currentState.gameStatus !== 'playing' ||
-        currentState.coins < this.gameConfig.hintCost) {
+        currentState.usedHints[level] ||
+        currentState.coins < this.gameConfig.hintCost[level]) {
       return null;
     }
 
-    const hint = currentState.currentQuestion.hints[currentState.usedHints];
+    const hint = currentState.currentQuestion.hints[level];
     const updatedState = { 
       ...currentState, 
-      usedHints: currentState.usedHints + 1,
-      coins: currentState.coins - this.gameConfig.hintCost
+      usedHints: {
+        ...currentState.usedHints,
+        [level]: true
+      },
+      coins: currentState.coins - this.gameConfig.hintCost[level]
     };
     
     this.updateGameState(updatedState);
@@ -174,7 +181,7 @@ export class GameService {
   // New method to manually move to next question
   moveToNextQuestionManually(): void {
     const currentState = this.gameStateSubject.value;
-    this.moveToNextQuestion(currentState.score, currentState.coins, 0);
+    this.moveToNextQuestion(currentState.score, currentState.coins);
   }
 
   private endGame(finalScore?: number): void {
@@ -250,7 +257,7 @@ export class GameService {
       currentQuestionIndex: 0,
       score: 0,
       coins: this.gameConfig.startingCoins,
-      usedHints: 0,
+      usedHints: { easy: false, medium: false, hard: false },
       timeStarted: new Date(),
       category: currentState.category,
       questions: [],

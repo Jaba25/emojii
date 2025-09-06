@@ -2,143 +2,553 @@
   "movies": [
     {
       "id": 1,
-      "emojis": "🦁👑",
-      "answer": "The Lion King",
+      "emojis": "🦁👑⛰️",
+      "answer": "მეფე ლომი",
       "difficulty": "easy",
-      "hints": ["Disney animated movie", "African savanna setting", "Young lion prince named Simba"]
+      "hints": {
+        "easy": "დისნეის ანიმაციური ფილმი",
+        "medium": "სიმბას წარდგენა",
+        "hard": "ცხოვრების წრე"
+      }
     },
     {
       "id": 2,
       "emojis": "🕷️👨‍🎓",
-      "answer": "Spider-Man",
+      "answer": "ადამიანი ობობა",
       "difficulty": "easy",
-      "hints": ["Marvel superhero", "Peter Parker", "Web-slinging abilities"]
+      "hints": {
+        "easy": "Marvel-ის სუპერგმირი",
+        "medium": "პიტერ პარკერი",
+        "hard": "ობობას ქსელის სროლის უნარი"
+      }
     },
     {
       "id": 3,
-      "emojis": "🚢❄️💎",
-      "answer": "Titanic",
+      "emojis": "🚢👐👩‍❤️‍👨",
+      "answer": "ტიტანიკი",
       "difficulty": "medium",
-      "hints": ["1997 romantic drama", "Leonardo DiCaprio", "Unsinkable ship"]
+      "hints": {
+        "easy": "1997 წლის რომანტიკული დრამა",
+        "medium": "მე ვფრინავ, ჯეკ!",
+        "hard": "გემის ცხვირზე"
+      }
     },
     {
       "id": 4,
       "emojis": "👻🏠📞",
-      "answer": "Scream",
+      "answer": "კივილი",
       "difficulty": "medium",
-      "hints": ["Horror movie", "Masked killer", "What's your favorite scary movie?"]
+      "hints": {
+        "easy": "საშინელებათა ფილმი",
+        "medium": "ნიღბიანი მკვლელი",
+        "hard": "რომელია შენი საყვარელი საშინელებათა ფილმი?"
+      }
     },
     {
       "id": 5,
-      "emojis": "🎪🃏🦇",
-      "answer": "The Dark Knight",
+      "emojis": "🃏🦇💰",
+      "answer": "ბნელი რაინდი",
       "difficulty": "hard",
-      "hints": ["Batman movie", "Heath Ledger as villain", "Why so serious?"]
+      "hints": {
+        "easy": "ბეტმენის ფილმი",
+        "medium": "ჰიტ ლეჯერი როგორც ბოროტმოქმედი",
+        "hard": "რატომ ასე სერიოზულად?"
+      }
     },
     {
       "id": 6,
       "emojis": "👦⚡🧙‍♂️",
-      "answer": "Harry Potter",
+      "answer": "ჰარი პოტერი",
       "difficulty": "easy",
-      "hints": ["Boy wizard", "Hogwarts School", "The Chosen One"]
+      "hints": {
+        "easy": "ბიჭი ჯადოქარი",
+        "medium": "ჰოგვორტსის სკოლა",
+        "hard": "არჩეული"
+      }
     },
     {
       "id": 7,
       "emojis": "🐠🔍",
-      "answer": "Finding Nemo",
+      "answer": "ნემოს ძიებაში",
       "difficulty": "easy",
-      "hints": ["Pixar animated movie", "Lost clownfish", "Just keep swimming"]
+      "hints": {
+        "easy": "Pixar-ის ანიმაციური ფილმი",
+        "medium": "დაკარგული კლოუნი თევზი",
+        "hard": "უბრალოდ განაგრძე ცურვა"
+      }
     },
     {
       "id": 8,
-      "emojis": "🤖🚀⭐",
-      "answer": "Star Wars",
+      "emojis": "👨‍👦⚔️🗣️",
+      "answer": "ვარსკვლავური ომები",
       "difficulty": "medium",
-      "hints": ["Space epic", "Force powers", "Luke Skywalker"]
+      "hints": {
+        "easy": "კოსმოსური ეპოსი",
+        "medium": "მე მამაშენი ვარ",
+        "hard": "ლუკ სკაიუოქერი"
+      }
     },
     {
       "id": 9,
       "emojis": "🕰️⚡🚗",
-      "answer": "Back to the Future",
+      "answer": "უკან მომავალში",
       "difficulty": "medium",
-      "hints": ["Time travel", "DeLorean car", "Marty McFly"]
+      "hints": {
+        "easy": "დროის მოგზაურობა",
+        "medium": "დელორეანის მანქანა",
+        "hard": "მარტი მაკფლაი"
+      }
     },
     {
       "id": 10,
-      "emojis": "💍🗻🧙‍♂️",
-      "answer": "The Lord of the Rings",
-      "difficulty": "hard",
-      "hints": ["Fantasy epic", "Middle-earth", "One ring to rule them all"]
+      "emojis": "🧙‍♂️🗣️🚫",
+      "answer": "ბეჭდების მბრძანებელი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "ფენტეზი ეპოსი",
+        "medium": "შენ ვერ გაივლი!",
+        "hard": "განდალფი ბალროგის წინააღმდეგ"
+      }
     },
     {
       "id": 11,
       "emojis": "🦖🏞️🔬",
-      "answer": "Jurassic Park",
+      "answer": "იურული პარკი",
       "difficulty": "medium",
-      "hints": ["Dinosaurs brought back to life", "Steven Spielberg", "Life finds a way"]
+      "hints": {
+        "easy": "დინოზავრების გაცოცხლება",
+        "medium": "სტივენ სპილბერგი",
+        "hard": "ცხოვრება გზას იპოვის"
+      }
     },
     {
       "id": 12,
       "emojis": "👸❄️⛄",
-      "answer": "Frozen",
+      "answer": "გაყინული",
       "difficulty": "easy",
-      "hints": ["Disney animated", "Ice queen", "Let it go"]
+      "hints": {
+        "easy": "დისნეის ანიმაციური",
+        "medium": "ყინულის დედოფალი",
+        "hard": "გაუშვი და წადი"
+      }
     },
     {
       "id": 13,
       "emojis": "🎯🏹👨‍🦯",
-      "answer": "The Hunger Games",
+      "answer": "შიმშილის თამაშები",
       "difficulty": "medium",
-      "hints": ["Dystopian future", "Katniss Everdeen", "May the odds be ever in your favor"]
+      "hints": {
+        "easy": "დისტოპიური მომავალი",
+        "medium": "ქეთნის ევერდინი",
+        "hard": "იქნებ იღბალი მუდამ შენს მხარეს იყოს"
+      }
     },
     {
       "id": 14,
-      "emojis": "🦈🏖️👥",
-      "answer": "Jaws",
-      "difficulty": "hard",
-      "hints": ["Steven Spielberg thriller", "Great white shark", "You're gonna need a bigger boat"]
+      "emojis": "🦈🗣️🚤",
+      "answer": "ყბები",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "სტივენ სპილბერგის თრილერი",
+        "medium": "დიდი თეთრი ზვიგენი",
+        "hard": "გაგვჭირდება უფრო დიდი ნავი"
+      }
     },
     {
       "id": 15,
-      "emojis": "🎭😄😢",
-      "answer": "Inside Out",
+      "emojis": "😄😢😠🤢😨",
+      "answer": "გონების შიგნით",
       "difficulty": "easy",
-      "hints": ["Pixar movie about emotions", "Riley's mind", "Joy and Sadness"]
+      "hints": {
+        "easy": "Pixar-ის ფილმი ემოციებზე",
+        "medium": "რაილის გონება",
+        "hard": "სიხარული და სევდა"
+      }
     },
     {
       "id": 16,
-      "emojis": "🏃‍♂️💨🪶",
-      "answer": "Forrest Gump",
+      "emojis": "🍫📦🗣️",
+      "answer": "ფორესტ გამპი",
       "difficulty": "medium",
-      "hints": ["Tom Hanks", "Run Forrest Run", "Life is like a box of chocolates"]
+      "hints": {
+        "easy": "ტომ ჰენკსი",
+        "medium": "სკამზე მოსაუბრე კაცი",
+        "hard": "ცხოვრება შოკოლადის ყუთს ჰგავს"
+      }
     },
     {
       "id": 17,
-      "emojis": "🤡🎈🎪",
-      "answer": "It",
-      "difficulty": "hard",
-      "hints": ["Stephen King horror", "Pennywise the clown", "We all float down here"]
+      "emojis": "🤡🎈",
+      "answer": "ის",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "სტივენ კინგის საშინელებათა ფილმი",
+        "medium": "პენივაიზი – ჯამბაზი",
+        "hard": "აქ ყველანი ვტივტივებთ"
+      }
     },
     {
       "id": 18,
-      "emojis": "👻💕🎭",
-      "answer": "The Phantom of the Opera",
+      "emojis": "🎭🎶🕯️",
+      "answer": "ოპერის მოჩვენება",
       "difficulty": "hard",
-      "hints": ["Musical romance", "Opera house", "Mask-wearing phantom"]
+      "hints": {
+        "easy": "მუსიკალური რომანტიკა",
+        "medium": "ოპერის თეატრი",
+        "hard": "ნიღბიანი მოჩვენება"
+      }
     },
     {
       "id": 19,
-      "emojis": "🚗🏎️💨",
-      "answer": "Fast and Furious",
-      "difficulty": "medium",
-      "hints": ["Action franchise", "Street racing", "Family is everything"]
+      "emojis": "🚗💨👨‍👩‍👦",
+      "answer": "ფორსაჟი",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "ექშენ ფრანჩაიზი",
+        "medium": "ქუჩის რბოლები",
+        "hard": "ოჯახი ყველაფერია"
+      }
     },
     {
       "id": 20,
       "emojis": "🦸‍♀️⚔️🏝️",
-      "answer": "Wonder Woman",
+      "answer": "ქალი-საოცრება",
       "difficulty": "medium",
-      "hints": ["DC superhero", "Amazon warrior princess", "Gal Gadot"]
+      "hints": {
+        "easy": "DC-ს სუპერგმირი",
+        "medium": "ამაზონელი მებრძოლი პრინცესა",
+        "hard": "გალ გადოტი"
+      }
+    },
+    {
+      "id": 21,
+      "emojis": "👦🏠😱",
+      "answer": "მარტო სახლში",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "საშობაო კომედია",
+        "medium": "კევინ მაკალისტერი",
+        "hard": "ბოროტმოქმედები: ჰარი და მარვი"
+      }
+    },
+    {
+      "id": 22,
+      "emojis": "👹🧅🏰",
+      "answer": "შრეკი",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "ანიმაციური ფილმი მწვანე გიგანტზე",
+        "medium": "მოლაპარაკე სახედარი",
+        "hard": "გარეთ ჩემი ჭაობიდან!"
+      }
+    },
+    {
+      "id": 23,
+      "emojis": "🏴‍☠️🦜⚔️",
+      "answer": "კარიბის ზღვის მეკობრეები",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "დისნეის ფილმი მეკობრეებზე",
+        "medium": "კაპიტანი ჯეკ ბეღურა",
+        "hard": "შავი მარგალიტი"
+      }
+    },
+    {
+      "id": 24,
+      "emojis": "🤠🚀🧸",
+      "answer": "სათამაშოების ისტორია",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "Pixar-ის ანიმაცია სათამაშოებზე",
+        "medium": "ვუდი და ბაზ ლაითერი",
+        "hard": "უსასრულობისკენ და მის მიღმა!"
+      }
+    },
+    {
+      "id": 25,
+      "emojis": "🎈🏠👴",
+      "answer": "მფრინავი სახლი",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "Pixar-ის ანიმაცია",
+        "medium": "კარლ ფრედრიქსენი",
+        "hard": "ათასობით ბუშტით აფრენილი სახლი"
+      }
+    },
+    {
+      "id": 26,
+      "emojis": "🐀👨‍🍳🇫🇷",
+      "answer": "რატატუი",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "ანიმაცია ვირთხაზე, რომელსაც უყვარს საჭმლის კეთება",
+        "medium": "პარიზის რესტორანი",
+        "hard": "მზარეული რემი"
+      }
+    },
+    {
+      "id": 27,
+      "emojis": "🤸‍♂️⚫💨",
+      "answer": "მატრიცა",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "კიანუ რივზი",
+        "medium": "ტყვიებისგან თავის არიდება",
+        "hard": "ნეო"
+      }
+    },
+    {
+      "id": 28,
+      "emojis": "🌃🔄😴",
+      "answer": "დასაწყისი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "კრისტოფერ ნოლანის ფილმი",
+        "medium": "სიზმარი სიზმარში",
+        "hard": "ლეონარდო დიკაპრიო იპარავს იდეებს"
+      }
+    },
+    {
+      "id": 29,
+      "emojis": "⚔️🏟️👍",
+      "answer": "გლადიატორი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "ისტორიული დრამა",
+        "medium": "რომის იმპერია",
+        "hard": "მაქსიმუს დეციმუს მერიდიუსი"
+      }
+    },
+    {
+      "id": 30,
+      "emojis": "👽🌳💙",
+      "answer": "ავატარი",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "ჯეიმზ კამერონის ფილმი",
+        "medium": "პლანეტა პანდორა",
+        "hard": "ნავის ხალხი"
+      }
+    },
+    {
+      "id": 31,
+      "emojis": "🚀🌌⏳",
+      "answer": "ინტერსტელარი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "კრისტოფერ ნოლანის სამეცნიერო ფანტასტიკა",
+        "medium": "მოგზაურობა ჭიის ხვრელში",
+        "hard": "მეთიუ მაკკონაჰი"
+      }
+    },
+    {
+      "id": 32,
+      "emojis": "🤡🕺💥",
+      "answer": "ჯოკერი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "ბოროტმოქმედის წარმოშობის ისტორია",
+        "medium": "გოთემის ქალაქი",
+        "hard": "ხოაკინ ფენიქსი"
+      }
+    },
+    {
+      "id": 33,
+      "emojis": "💀🎸🎶",
+      "answer": "კოკო",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "Pixar-ის ანიმაცია მექსიკურ კულტურაზე",
+        "medium": "მიცვალებულთა დღე",
+        "hard": "ბიჭი სახელად მიგელი"
+      }
+    },
+    {
+      "id": 34,
+      "emojis": "🤖🌱🗑️",
+      "answer": "ვოლი",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "ანიმაცია რობოტზე",
+        "medium": "დედამიწის ბოლო რობოტი",
+        "hard": "ევა"
+      }
+    },
+    {
+      "id": 35,
+      "emojis": "🦸‍♂️👨‍👩‍👧‍👦💥",
+      "answer": "სუპერ ოჯახი",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "სუპერგმირების ოჯახი",
+        "medium": "Pixar-ის ანიმაციური ფილმი",
+        "hard": "ბატონი წარმოუდგენელი"
+      }
+    },
+    {
+      "id": 36,
+      "emojis": "👹🚪👧",
+      "answer": "მონსტრების კორპორაცია",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "ანიმაცია მონსტრებზე, რომლებიც ბავშვებს აშინებენ",
+        "medium": "სალი და მაიკ ვაზოვსკი",
+        "hard": "ბუ"
+      }
+    },
+    {
+      "id": 37,
+      "emojis": "🤷‍♂️👀🕺",
+      "answer": "მაკულატურა",
+      "difficulty": "hard",
+      "hints": {
+        "easy": "კვენტინ ტარანტინოს ფილმი",
+        "medium": "დაბნეული ტრავოლტა",
+        "hard": "არაწრფივი თხრობა"
+      }
+    },
+    {
+      "id": 38,
+      "emojis": "🐴🛌😱",
+      "answer": "ნათლია",
+      "difficulty": "hard",
+      "hints": {
+        "easy": "ფილმი მაფიის ოჯახზე",
+        "medium": "შეთავაზება, რომელზეც უარს ვერ იტყვი",
+        "hard": "ცხენის თავი საწოლში"
+      }
+    },
+    {
+      "id": 39,
+      "emojis": "🧼👊💥",
+      "answer": "მებრძოლთა კლუბი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "დევიდ ფინჩერის ფილმი",
+        "medium": "ბრედ პიტი და ედვარდ ნორტონი",
+        "hard": "პირველი წესი: არავის უთხრათ კლუბის შესახებ"
+      }
+    },
+    {
+      "id": 40,
+      "emojis": "🙌🌧️🆓",
+      "answer": "გაქცევა შოუშენკიდან",
+      "difficulty": "hard",
+      "hints": {
+        "easy": "სტივენ კინგის ნაწარმოების ეკრანიზაცია",
+        "medium": "ენდი დიუფრეინი",
+        "hard": "თავისუფლება წვიმაში"
+      }
+    },
+    {
+      "id": 41,
+      "emojis": "👨‍⚕️🗣️🤫",
+      "answer": "კრავთა დუმილი",
+      "difficulty": "hard",
+      "hints": {
+        "easy": "ფსიქოლოგიური თრილერი",
+        "medium": "კლარის სტერლინგი",
+        "hard": "ჰანიბალ ლექტერი"
+      }
+    },
+    {
+      "id": 42,
+      "emojis": "🍑🏠🦟",
+      "answer": "პარაზიტი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "სამხრეთ კორეული ფილმი",
+        "medium": "ოსკარის მფლობელი საუკეთესო ფილმისთვის",
+        "hard": "ორი ოჯახის ისტორია"
+      }
+    },
+    {
+      "id": 43,
+      "emojis": "🚲🌕👽",
+      "answer": "უცხოპლანეტელი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "სტივენ სპილბერგის ფილმი",
+        "medium": "მფრინავი ველოსიპედი",
+        "hard": "სახლში დარეკვა"
+      }
+    },
+    {
+      "id": 44,
+      "emojis": "🤖🏍️👍",
+      "answer": "ტერმინატორი 2: განკითხვის დღე",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "ექშენ ფილმი არნოლდ შვარცენეგერით",
+        "medium": "რობოტი მომავლიდან",
+        "hard": "Hasta la vista, baby"
+      }
+    },
+    {
+      "id": 45,
+      "emojis": "🏢🔫🎄",
+      "answer": "კერკეტი კაკალი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "ბრიუს უილისის ექშენი",
+        "medium": "ჯონ მაკკლეინი",
+        "hard": "ნაკატომი პლაზა"
+      }
+    },
+    {
+      "id": 46,
+      "emojis": "🏃‍♂️🏛️💪",
+      "answer": "როკი",
+      "difficulty": "easy",
+      "hints": {
+        "easy": "ფილმი მოკრივეზე",
+        "medium": "სილვესტერ სტალონე",
+        "hard": "ფილადელფიის კიბეები"
+      }
+    },
+    {
+      "id": 47,
+      "emojis": "🗣️🆓🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "answer": "მამაცი გული",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "მელ გიბსონის ისტორიული ფილმი",
+        "medium": "შოტლანდიის დამოუკიდებლობა",
+        "hard": "თავისუფლება!"
+      }
+    },
+    {
+      "id": 48,
+      "emojis": "💃🕺🎶",
+      "answer": "ლა ლა ლენდი",
+      "difficulty": "medium",
+      "hints": {
+        "easy": "თანამედროვე მიუზიკლი",
+        "medium": "რაიან გოსლინგი და ემა სტოუნი",
+        "hard": "City of Stars"
+      }
+    },
+    {
+      "id": 49,
+      "emojis": "🚗🔥🎸",
+      "answer": "შეშლილი მაქსი: მრისხანების გზა",
+      "difficulty": "hard",
+      "hints": {
+        "easy": "პოსტ-აპოკალიპტური ექშენი",
+        "medium": "იმპერატორი ფურიოსა",
+        "hard": "რა მშვენიერი დღეა!"
+      }
+    },
+    {
+      "id": 50,
+      "emojis": "🪓🚪😱",
+      "answer": "ნათება",
+      "difficulty": "hard",
+      "hints": {
+        "easy": "საშინელებათა ფილმი იზოლირებულ სასტუმროზე",
+        "medium": "სტენლი კუბრიკის ფილმი",
+        "hard": "აი, ჯონი!"
+      }
     }
   ]
 }

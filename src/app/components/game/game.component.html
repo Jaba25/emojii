@@ -4,8 +4,9 @@
       <ion-button (click)="goBackToMenu()">
         <ion-icon name="arrow-back-outline"></ion-icon>
       </ion-button>
+      <div class="category-name">{{ categoryTitle }}</div>
     </ion-buttons>
-    <ion-title>{{ categoryTitle }}</ion-title>
+    <ion-title>გამოიცანი ემოჯი</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="goToMainPage()">
         <ion-icon name="home-outline" slot="start"></ion-icon>
@@ -57,12 +58,72 @@
       </div>
     </div>
 
-    <!-- Hint Section -->
+    <!-- Hint Options Section -->
+    <div class="hint-options-section" *ngIf="showHintOptions">
+      <ion-card class="hint-options-card">
+        <ion-card-content>
+          <div class="hint-options-header">
+            <div class="hint-icon">💡</div>
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              (click)="closeHintOptions(); $event.stopPropagation()"
+              class="close-button">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </div>
+          <div class="hint-options-title">აირჩიე მინიშნების ტიპი:</div>
+          
+          <div class="hint-buttons">
+            <ion-button 
+              expand="block" 
+              class="hint-level-button easy-hint"
+              [disabled]="!canUseHint('easy')"
+              (click)="useHint('easy')">
+              <div class="hint-button-content">
+                <div class="hint-level">მარტივი მინიშნება</div>
+                <div class="hint-cost">10 🪙</div>
+                <div class="hint-description">ზოგადი მინიშნება</div>
+              </div>
+            </ion-button>
+
+            <ion-button 
+              expand="block" 
+              class="hint-level-button medium-hint"
+              [disabled]="!canUseHint('medium')"
+              (click)="useHint('medium')">
+              <div class="hint-button-content">
+                <div class="hint-level">საშუალო მინიშნება</div>
+                <div class="hint-cost">20 🪙</div>
+                <div class="hint-description">კონკრეტული მინიშნება</div>
+              </div>
+            </ion-button>
+
+            <ion-button 
+              expand="block" 
+              class="hint-level-button hard-hint"
+              [disabled]="!canUseHint('hard')"
+              (click)="useHint('hard')">
+              <div class="hint-button-content">
+                <div class="hint-level">რთული მინიშნება</div>
+                <div class="hint-cost">30 🪙</div>
+                <div class="hint-description">ძლიერი მინიშნება</div>
+              </div>
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Active Hint Section -->
     <div class="hint-section" *ngIf="showHint">
       <ion-card class="hint-card">
         <ion-card-content>
           <div class="hint-header">
-            <div class="hint-icon">💡</div>
+            <div class="hint-info">
+              <div class="hint-icon">💡</div>
+              <div class="hint-level-label">{{ getHintLevelText() }}</div>
+            </div>
             <ion-button 
               fill="clear" 
               size="small" 
@@ -105,8 +166,8 @@
       </ion-card>
     </div>
 
-    <!-- Answer Input - Only show when hint and revealed answer are not shown -->
-    <div class="answer-section" *ngIf="!showHint && !showRevealedAnswer">
+    <!-- Answer Input - Only show when hint, hint options and revealed answer are not shown -->
+    <div class="answer-section" *ngIf="!showHint && !showHintOptions && !showRevealedAnswer">
       <ion-item lines="none" class="answer-input">
         <ion-label position="stacked">შენი პასუხი:</ion-label>
         <ion-input 
@@ -127,11 +188,11 @@
         <ion-button 
           fill="outline" 
           color="warning"
-          (click)="useHint()"
-          [disabled]="getHintsLeft() === 0 || showHint || !canAffordHint()"
+          (click)="showHintOptions = true"
+          [disabled]="showHint || showHintOptions"
           class="hint-button">
           <ion-icon name="bulb-outline" slot="start"></ion-icon>
-          მინიშნება ({{ getHintsLeft() }}) - 10🪙
+          მინიშნება
         </ion-button>
 
         <!-- Show Answer Button -->

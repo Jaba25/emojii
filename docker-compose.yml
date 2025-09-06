@@ -17,16 +17,4 @@ services:
     stdin_open: true
     tty: true
 
-  # Production service
-  app-prod:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: production
-    container_name: emoji-game-prod
-    ports:
-      - "3000:80"
-    environment:
-      - NODE_ENV=production
-    restart: unless-stopped
 

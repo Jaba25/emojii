@@ -1,0 +1,30 @@
+// Fix for @capacitor-community/admob deprecation warnings
+// Add this to your app/build.gradle if you want to suppress specific warnings
+
+android {
+    lintOptions {
+        // Suppress specific AdMob deprecation warnings
+        disable 'Deprecation'
+        disable 'UnusedParameter'
+        disable 'UnnecessaryNullCheck'
+        
+        // Don't abort build on lint errors
+        abortOnError false
+        warningsAsErrors false
+        
+        // Ignore specific warnings from AdMob plugin
+        ignore 'SmartBannerDeprecated'
+        ignore 'UnnecessaryDoubleExclamation'
+    }
+    
+    // Suppress Kotlin warnings
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            freeCompilerArgs += [
+                "-Xsuppress-deprecated-jvm-target-warning",
+                "-Xno-param-assertions",
+                "-Xno-call-assertions"
+            ]
+        }
+    }
+}

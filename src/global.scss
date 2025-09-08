@@ -25,25 +25,6 @@ body {
   --ion-text-color-rgb: 0, 0, 0 !important;
 }
 
-/* Header title positioning - default centered, but allow component overrides */
-ion-toolbar ion-title {
-  text-align: center !important;
-  width: auto !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-/* All content areas should have adequate bottom spacing */
-ion-content {
-  --padding-bottom: 40px !important;
-}
-
-@media (max-width: 480px) {
-  ion-content {
-    --padding-bottom: 30px !important;
-  }
-}
-
 /* Override any dark mode settings */
 .ios body,
 .md body {
@@ -138,9 +119,6 @@ ion-content {
   ion-title {
     font-size: 1.1em;
     font-weight: 600;
-    text-align: center !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
   }
   
   /* Button optimizations for touch */
@@ -171,11 +149,6 @@ ion-content {
   .emoji-text {
     font-size: 3.5em !important; // Increased size for better visibility on tablets
   }
-  
-  /* Add bottom spacing to all content areas */
-  ion-content {
-    --padding-bottom: 40px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -191,9 +164,6 @@ ion-content {
   
   ion-title {
     font-size: 1em;
-    text-align: center !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
   }
   
   /* Smaller margins for very small screens */
@@ -204,11 +174,6 @@ ion-content {
   /* Smaller emoji for small screens but still readable */
   .emoji-text {
     font-size: 3em !important; // Increased from 2.5em to maintain readability
-  }
-  
-  /* Add bottom spacing to all content areas */
-  ion-content {
-    --padding-bottom: 30px;
   }
 }
 

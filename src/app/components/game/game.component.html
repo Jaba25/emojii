@@ -1,4 +1,5 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="safe-area-header">
+  <div class="header-safe-area"></div>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-button (click)="goBackToMenu()">
@@ -15,7 +16,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="game-content" *ngIf="gameState">
+<ion-content [fullscreen]="true" class="game-content safe-area-content" *ngIf="gameState">
   
   <!-- Game Status Bar -->
   <div class="status-bar">
@@ -50,7 +51,7 @@
   <div class="question-container" *ngIf="gameState.currentQuestion">
     
     <!-- Emoji Display -->
-    <div class="emoji-display">
+    <div class="emoji-display" [class]="category + '-category'">
       <div class="emoji-text" [class.long-sequence]="isLongEmojiSequence()">{{ gameState.currentQuestion.emojis }}</div>
       <div class="difficulty-badge" [class]="'difficulty-' + gameState.currentQuestion.difficulty">
         {{ getDifficultyText(gameState.currentQuestion.difficulty) }}
@@ -165,56 +166,93 @@
       </ion-card>
     </div>
 
-    <!-- Answer Input - Only show when hint, hint options and revealed answer are not shown -->
+    <!-- Answer Section - Only show when hint, hint options and revealed answer are not shown -->
     <div class="answer-section" *ngIf="!showHint && !showHintOptions && !showRevealedAnswer">
-      <ion-item lines="none" class="answer-input">
-        <ion-label position="stacked">შენი პასუხი:</ion-label>
-        <ion-input 
-          [(ngModel)]="userAnswer"
-          (keydown.enter)="submitAnswer()"
-          placeholder="დაწერე პასუხი აქ..."
-          clearInput="true">
-        </ion-input>
-      </ion-item>
+      
+      <!-- Answer Label -->
+      <div class="answer-label">შენი პასუხი:</div>
+      
+      <!-- Letter Boxes Container -->
+      <div class="answer-boxes-container" (click)="focusHiddenInput()">
+        <div 
+          *ngFor="let letterData of letterBoxes; let i = index"
+          class="letter-box"
+          [class.filled]="letterData.userLetter"
+          [class.correct]="letterData.isCorrect"
+          [class.incorrect]="letterData.isIncorrect"
+          [class.space-after]="letterData.spaceAfter">
+          {{ letterData.userLetter }}
+        </div>
+      </div>
+
+      <!-- Completely Hidden Input Field (triggers keyboard) -->
+      <input 
+        #hiddenInput
+        type="text" 
+        [(ngModel)]="userAnswer"
+        (input)="onAnswerChange($event)"
+        (keydown)="onKeyDown($event)"
+        (keyup)="onKeyUp($event)"
+        (compositionstart)="onCompositionStart($event)"
+        (compositionupdate)="onCompositionUpdate($event)"
+        (compositionend)="onCompositionEnd($event)"
+        (focus)="onInputFocus()"
+        (blur)="onInputBlur()"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        inputmode="text"
+        lang="ka"
+        enterkeyhint="done"
+        class="completely-hidden-input">
+
     </div>
 
-    <!-- Action Buttons -->
-    <div class="action-buttons" *ngIf="!showRevealedAnswer">
+    <!-- Action Buttons - Hide when hint options or hint is shown -->
+    <div class="action-buttons" *ngIf="!showRevealedAnswer && !showHintOptions && !showHint">
       
       <!-- Action Buttons Row -->
       <div class="action-buttons">
         <!-- Hint Button -->
         <ion-button 
-          fill="outline" 
-          color="warning"
+          expand="block"
           (click)="showHintOptions = true"
-          [disabled]="showHint || showHintOptions"
-          class="hint-button">
-          <ion-icon name="bulb-outline" slot="start"></ion-icon>
+          class="hint-button"
+          style="--background: #ff9800 !important; --color: #ffffff !important; --border-radius: 16px !important; background: #ff9800 !important; color: #ffffff !important; border-radius: 16px !important; box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4) !important;">
           მინიშნება
         </ion-button>
 
         <!-- Show Answer Button -->
         <ion-button 
-          fill="outline" 
-          color="danger"
+          expand="block"
           (click)="showAnswer()"
           [disabled]="!canAffordShowAnswer()"
-          class="show-answer-button">
-          <ion-icon name="book-outline" slot="start"></ion-icon>
+          class="show-answer-button"
+          style="--background: #f44336 !important; --color: #ffffff !important; --border-radius: 16px !important; background: #f44336 !important; color: #ffffff !important; border-radius: 16px !important; box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4) !important;">
           პასუხი - 50🪙
         </ion-button>
       </div>
 
-      <!-- Submit Button -->
+      <!-- Submit Button or Clear Button -->
       <ion-button 
+        *ngIf="!showAnswerResult || isAnswerCorrect"
         expand="block" 
         color="success"
         (click)="submitAnswer()"
         [disabled]="!userAnswer.trim()"
         class="submit-button">
-        <ion-icon name="checkmark-outline" slot="start"></ion-icon>
         პასუხის გაგზავნა
+      </ion-button>
+
+      <!-- Clear/Try Again Button for incorrect answers -->
+      <ion-button 
+        *ngIf="showAnswerResult && !isAnswerCorrect"
+        expand="block" 
+        color="danger"
+        (click)="clearIncorrectAnswer()"
+        class="clear-button">
+        სცადე კიდევ
       </ion-button>
       
     </div>
@@ -236,12 +274,16 @@
     </div>
   </div>
 
+  <!-- Bottom Safe Area -->
+  <div class="bottom-safe-area"></div>
+
 </ion-content>
 
 <!-- Loading State -->
-<ion-content *ngIf="!gameState" class="loading-content">
+<ion-content *ngIf="!gameState" class="loading-content safe-area-content">
   <div class="loading-container">
     <ion-spinner name="crescent" color="primary"></ion-spinner>
     <p>თამაში იტვირთება...</p>
   </div>
+  <div class="bottom-safe-area"></div>
 </ion-content>

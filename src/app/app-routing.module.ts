@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { GameMenuComponent } from './components/game-menu/game-menu.component';
 import { GameComponent } from './components/game/game.component';
 import { ResultComponent } from './components/result/result.component';
@@ -23,11 +22,3 @@ export const routes: Routes = [
     component: ResultComponent
   }
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}

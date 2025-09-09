@@ -4,7 +4,7 @@
             "outputFile": "com.jaba.emojigame.app-mergeDebugResources-25:/values-v29/values-v29.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\jaba\\.gradle\\caches\\8.11.1\\transforms\\fb45cce1f49d878f63bd8e8d88d9e60f\\transformed\\jetified-core-splashscreen-1.0.1\\res\\values-v29\\values-v29.xml",
+                    "source": "C:\\Users\\jaba\\.gradle\\caches\\8.13\\transforms\\fca2252065b58cbdde158fb4a20bd2f4\\transformed\\jetified-core-splashscreen-1.0.1\\res\\values-v29\\values-v29.xml",
                     "from": {
                         "startLines": "2,7",
                         "startColumns": "4,4",

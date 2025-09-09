@@ -17,4 +17,28 @@ services:
     stdin_open: true
     tty: true
 
+  # Production service
+  app-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: emoji-game-prod
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+
+  # Android build service
+  android-build:
+    build:
+      context: .
+      dockerfile: Dockerfile.android
+    container_name: emoji-game-android
+    volumes:
+      - ./android-output:/usr/src/app/android-output
+    environment:
+      - ANDROID_HOME=/opt/android-sdk
+      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+
 

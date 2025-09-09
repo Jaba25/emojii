@@ -1,294 +1,95 @@
-.result-content {
-  --padding-top: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-}
-
-.result-container, .scores-container {
-  padding: 80px 20px 20px 20px; /* Added top padding to account for header */
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Result Section Styles */
-.result-header {
+.result-container {
+  padding: 20px;
   text-align: center;
-  color: white;
-  margin-bottom: 30px;
-
-  .result-icon {
-    font-size: 4em;
-    margin-bottom: 16px;
-  }
-
-  h1 {
-    font-size: 2.2em;
-    font-weight: bold;
-    margin: 16px 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  }
-
-  .result-message {
-    font-size: 1.1em;
-    opacity: 0.9;
-    margin: 0;
-    line-height: 1.4;
-  }
-}
-
-.stats-card {
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  margin-bottom: 30px;
-
-  ion-card-header {
-    text-align: center;
-    padding-bottom: 8px;
-
-    ion-card-title {
-      font-size: 1.3em;
-      font-weight: 600;
+  
+  .header {
+    margin-bottom: 30px;
+    
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    
+    h2 {
+      font-size: 1.2rem;
+      color: #666;
+      font-weight: normal;
     }
   }
-
+  
   .stats-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding: 0;
-  }
-
-  .stat-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    .stat-icon {
-      font-size: 1.8em;
-      flex-shrink: 0;
-    }
-
-    .stat-info {
-      flex-grow: 1;
-
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+    
+    .stat-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      
+      .stat-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      
       .stat-label {
-        font-size: 0.85em;
-        color: var(--ion-color-medium);
-        margin-bottom: 2px;
-      }
-
-      .stat-value {
-        font-size: 1.1em;
-        font-weight: 600;
-        color: var(--ion-color-dark);
-      }
-    }
-  }
-}
-
-.action-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  .action-button {
-    --border-radius: 12px;
-    height: 48px;
-    font-weight: 600;
-  }
-}
-
-/* Scores Section Styles */
-.filter-section {
-  margin-bottom: 20px;
-
-  ion-segment {
-    --background: rgba(255, 255, 255, 0.1);
-    --color-checked: #333;
-    border-radius: 12px;
-    padding: 4px;
-  }
-
-  ion-segment-button {
-    --border-radius: 8px;
-    --color: rgba(255, 255, 255, 0.8);
-    --color-checked: #333;
-    font-size: 0.9em;
-
-    ion-label {
-      margin: 4px 0;
-    }
-  }
-}
-
-.scores-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.score-card {
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-
-  &.rank-1 {
-    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-    border: 2px solid #ffd700;
-  }
-
-  &.rank-2 {
-    background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
-    border: 2px solid #c0c0c0;
-  }
-
-  &.rank-3 {
-    background: linear-gradient(135deg, #cd7f32 0%, #d4945a 100%);
-    border: 2px solid #cd7f32;
-  }
-
-  ion-card-content {
-    padding: 16px;
-  }
-
-  .score-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-
-    .rank-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      position: relative;
-
-      .rank-number {
-        font-size: 1.2em;
-        font-weight: bold;
-        color: #333;
-      }
-
-      .rank-icon {
-        position: absolute;
-        font-size: 1.5em;
-        top: -5px;
-        right: -5px;
-      }
-    }
-
-    .score-info {
-      flex-grow: 1;
-
-      .score-points {
-        font-size: 1.3em;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 2px;
-      }
-
-      .score-category {
-        font-size: 0.9em;
+        font-size: 0.9rem;
         color: #666;
+        margin-bottom: 5px;
+      }
+      
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
       }
     }
   }
-
-  .score-details {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-
-    .score-detail {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.85em;
-      color: #666;
-
-      ion-icon {
-        font-size: 1em;
-      }
-    }
+  
+  .performance-message {
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
   }
-}
-
-.no-scores {
-  text-align: center;
-  color: white;
-  padding: 40px 20px;
-
-  .no-scores-icon {
-    font-size: 4em;
-    margin-bottom: 20px;
-  }
-
-  h3 {
-    font-size: 1.5em;
-    margin: 16px 0;
-  }
-
-  p {
-    opacity: 0.9;
-    margin-bottom: 24px;
-    line-height: 1.4;
-  }
-
-  ion-button {
-    --border-radius: 12px;
-    height: 48px;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-}
-
-.back-section {
-  margin-top: 20px;
-
-  ion-button {
-    --border-radius: 12px;
-    height: 48px;
-  }
-}
-
-@media (min-width: 768px) {
+  
   .action-buttons {
-    flex-direction: row;
+    display: flex;
+    gap: 15px;
     justify-content: center;
-    max-width: 500px;
-    margin: 0 auto;
-
-    .action-button {
-      flex: 1;
-    }
-  }
-
-  .score-details {
-    justify-content: space-between;
-  }
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 767px) {
-  .result-container, .scores-container {
-    padding: 70px 15px 20px 15px; /* Adjusted for mobile header */
-  }
-
-  .result-header {
-    .result-icon {
-      font-size: 3em; /* Slightly smaller on mobile */
-    }
-
-    h1 {
-      font-size: 1.8em; /* Adjusted for mobile */
+    
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &.btn-primary {
+        background: #007bff;
+        color: white;
+        
+        &:hover {
+          background: #0056b3;
+        }
+      }
+      
+      &.btn-secondary {
+        background: #28a745;
+        color: white;
+        
+        &:hover {
+          background: #1e7e34;
+        }
+      }
     }
   }
 }

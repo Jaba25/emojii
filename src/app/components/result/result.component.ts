@@ -1,125 +1,202 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { Component, Input, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { GameService } from '../../services/game.service';
-import { Score, GameState, GameCategory } from '../../models/game.model';
+
+export interface GameState {
+  score: number;
+  currentQuestionIndex: number;
+  questions: any[];
+  timeStarted: Date;
+  coins: number;
+  category: string;
+}
+
+export interface GameResult {
+  movieTitle: string;
+  userGuess: string;
+  isCorrect: boolean;
+  timeSpent: number;
+  hintsUsed: number;
+}
+
+export interface GameResults {
+  results: GameResult[];
+  totalScore: number;
+  totalTime: number;
+  correctAnswers: number;
+  hintsUsed: number;
+}
+
+export interface HighScore {
+  playerName: string;
+  score: number;
+  correctAnswers: number;
+  timeSpent: number;
+  category: string;
+  date: Date;
+}
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [CommonModule, IonicModule, FormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ResultComponent implements OnInit {
+  @Input() gameResults: GameResults | null = null;
+  @Input() gameState: GameState | null = null;
+  @Input() totalScore: number = 0;
+  @Input() totalTime: number = 0;
   
-  gameState: GameState | null = null;
-  highScores: Score[] = [];
-  showScores = false;
-  selectedCategory: GameCategory | 'all' = 'all';
-  Date = Date; // Add Date property for template access
-
-  constructor(
-    private gameService: GameService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+  totalCorrectAnswers: number = 0;
+  userLeaderboardPosition: number = 0;
+  accuracy: number = 0;
+  averageTimePerMovie: number = 0;
+  showScores: boolean = false;
+  selectedCategory: string = 'all';
+  highScores: HighScore[] = [];
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.showScores = params['showScores'] === 'true';
-    });
-
-    this.gameState = this.gameService.getCurrentGameState();
+    this.calculateCorrectAnswers();
+    this.calculateStats();
+    this.calculateLeaderboardPosition();
     this.loadHighScores();
   }
 
-  loadHighScores(): void {
-    if (this.selectedCategory === 'all') {
-      this.highScores = this.gameService.getHighScores();
-    } else {
-      this.highScores = this.gameService.getHighScores(this.selectedCategory);
+  calculateCorrectAnswers(): void {
+    this.totalCorrectAnswers = this.gameResults?.correctAnswers || 0;
+    
+    if (this.gameResults?.results) {
+      this.totalCorrectAnswers = this.gameResults.results.filter(result => result.isCorrect).length;
     }
   }
 
-  onCategoryChange(): void {
-    this.loadHighScores();
+  calculateLeaderboardPosition(): void {
+    const totalPlayers = 1000;
+    const scorePercentile = Math.min(this.totalCorrectAnswers / 50, 1);
+    this.userLeaderboardPosition = Math.max(1, Math.floor(totalPlayers * (1 - scorePercentile)));
   }
 
-  playAgain(): void {
-    if (this.gameState) {
-      this.router.navigate(['/game', this.gameState.category]);
-    } else {
-      this.router.navigate(['/menu']);
+  calculateStats(): void {
+    if (this.gameResults?.results) {
+      const totalMovies = this.gameResults.results.length;
+      this.accuracy = totalMovies > 0 ? Math.round((this.totalCorrectAnswers / totalMovies) * 100) : 0;
+      this.averageTimePerMovie = totalMovies > 0 ? Math.round(this.totalTime / totalMovies) : 0;
     }
-  }
-
-  goToMenu(): void {
-    this.router.navigate(['/menu']);
-  }
-
-  changeCategory(): void {
-    this.router.navigate(['/menu']);
   }
 
   formatTime(milliseconds: number): string {
     const seconds = Math.floor(milliseconds / 1000);
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    
-    if (minutes > 0) {
-      return `${minutes}წუთ ${remainingSeconds}წმ`;
-    }
-    return `${remainingSeconds}წმ`;
+    return minutes > 0 ? \\m \s\ : \\s\;
   }
 
   formatDate(date: Date): string {
-    return new Intl.DateTimeFormat('ka-GE', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }).format(date);
+    return new Date(date).toLocaleDateString('ka-GE');
   }
 
-  getCategoryIcon(category: GameCategory): string {
+  getCategoryIcon(category: string): string {
     switch (category) {
-      case 'movies': return '🎬';
-      case 'series': return '📺';
-      case 'songs': return '🎵';
-      default: return '🎮';
+      case 'movies': return '??';
+      case 'series': return '??';
+      case 'songs': return '??';
+      default: return '??';
     }
   }
 
-  getCategoryTitle(category: GameCategory): string {
+  getCategoryTitle(category: string): string {
     switch (category) {
-      case 'movies': return 'ფილმები';
-      case 'series': return 'სერიალები';
-      case 'songs': return 'სიმღერები';
-      default: return category;
+      case 'movies': return '???????';
+      case 'series': return '?????????';
+      case 'songs': return '?????????';
+      default: return '?????';
     }
   }
 
-  getResultMessage(): string {
-    if (!this.gameState) return '';
+  playAgain(): void {
+    window.location.reload();
+  }
+
+  changeCategory(): void {
+    // Navigate to category selection
+    console.log('Change category');
+  }
+
+  loadHighScores(): void {
+    // Mock high scores data for Georgian emoji movie game
+    this.highScores = [
+      {
+        playerName: '??????? ????? ????????',
+        score: 2500,
+        correctAnswers: 48,
+        timeSpent: 900000,
+        category: 'movies',
+        date: new Date()
+      },
+      {
+        playerName: '???????? ?????????',
+        score: 2200,
+        correctAnswers: 42,
+        timeSpent: 1200000,
+        category: 'movies',
+        date: new Date()
+      },
+      {
+        playerName: '????? ??????????',
+        score: 2000,
+        correctAnswers: 38,
+        timeSpent: 1500000,
+        category: 'movies',
+        date: new Date()
+      }
+    ];
+  }
+
+  onCategoryChange(): void {
+    this.loadHighScores();
+  }
+
+  goToMenu(): void {
+    window.location.href = '/';
+  }
+
+  shareResults(): void {
+    const message = \?? Georgian Emoji Movie Game Results!
+? Correct: \/50
+?? Accuracy: \%
+?? Time: \ minutes
+?? Rank: #\
+
+Play the amazing Georgian movie guessing game!\;
     
-    const percentage = (this.gameState.currentQuestionIndex / this.gameState.questions.length) * 100;
-    
-    if (percentage === 100) {
-      return 'შესანიშნავი! ყველა კითხვა გამოიცანი! 🏆';
-    } else if (percentage >= 80) {
-      return 'ძალიან კარგი შედეგი! 🌟';
-    } else if (percentage >= 60) {
-      return 'კარგი შედეგი! 👏';
-    } else if (percentage >= 40) {
-      return 'არცუშავს, შემდეგჯერ უკეთესი იქნება! 💪';
+    if (navigator.share) {
+      navigator.share({
+        title: 'Georgian Emoji Movie Game Results',
+        text: message
+      });
     } else {
-      return 'სცადე კიდევ ერთხელ! 🎮';
+      navigator.clipboard.writeText(message);
+      alert('Results copied to clipboard! ??');
+    }
+  }
+
+  getPerformanceMessage(): string {
+    const accuracy = this.accuracy;
+    
+    if (accuracy >= 90) {
+      return '?? Georgian Movie Expert! ??????? ????? ????????!';
+    } else if (accuracy >= 80) {
+      return '?? Movie Enthusiast! ????? ?????????!';
+    } else if (accuracy >= 70) {
+      return '?? Good Knowledge! ????? ?????!';
+    } else if (accuracy >= 60) {
+      return '?? Keep Learning! ???????? ??????!';
+    } else {
+      return '?? Room for Improvement! ????????????? ???????!';
     }
   }
 }

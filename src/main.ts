@@ -10,11 +10,17 @@ import { IonicRouteStrategy } from '@ionic/angular';
 // Import routes
 import { routes } from './app/app-routing.module';
 
+// Import services
+import { DataService } from './app/services/data.service';
+import { GameService } from './app/services/game.service';
+
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
     importProvidersFrom(IonicModule.forRoot()),
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    DataService,
+    GameService
   ]
 }).catch(err => console.log(err));

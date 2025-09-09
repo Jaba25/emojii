@@ -42,6 +42,9 @@ export class GameService {
   constructor(private dataService: DataService) { }
 
   startGame(category: GameCategory): void {
+    // First reset the game state completely
+    this.resetGame();
+    
     this.dataService.getQuestions(category).subscribe(data => {
       const questions = this.dataService.shuffleArray(data[category] || []);
       

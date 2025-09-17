@@ -30,18 +30,20 @@ export class GameService {
     currentQuestionIndex: 0,
     score: 0,
     coins: this.gameConfig.startingCoins,
+    correctAnswers: 0,
     usedHints: { easy: false, medium: false, hard: false },
     timeStarted: new Date(),
     category: 'movies',
     questions: [],
-    gameStatus: 'playing'
+    gameStatus: 'playing',
+    username: undefined
   });
 
   public gameState$ = this.gameStateSubject.asObservable();
 
   constructor(private dataService: DataService) { }
 
-  startGame(category: GameCategory): void {
+  startGame(category: GameCategory, username?: string): void {
     // First reset the game state completely
     this.resetGame();
     
@@ -53,11 +55,13 @@ export class GameService {
         currentQuestionIndex: 0,
         score: 0,
         coins: this.gameConfig.startingCoins,
+        correctAnswers: 0,
         usedHints: { easy: false, medium: false, hard: false },
         timeStarted: new Date(),
         category,
         questions,
-        gameStatus: 'playing'
+        gameStatus: 'playing',
+        username
       };
       
       this.gameStateSubject.next(newGameState);
@@ -97,8 +101,9 @@ export class GameService {
     const baseScore = this.gameConfig.scorePerQuestion[currentState.currentQuestion!.difficulty];
     const finalScore = Math.max(baseScore, 1);
     const coinReward = this.gameConfig.correctAnswerReward;
+    const newCorrectAnswers = currentState.correctAnswers + 1;
 
-    this.moveToNextQuestion(currentState.score + finalScore, currentState.coins + coinReward);
+    this.moveToNextQuestion(currentState.score + finalScore, currentState.coins + coinReward, newCorrectAnswers);
   }
 
   private handleIncorrectAnswer(): void {
@@ -114,12 +119,12 @@ export class GameService {
     this.updateGameState(updatedState);
   }
 
-  private moveToNextQuestion(newScore: number, newCoins: number): void {
+  private moveToNextQuestion(newScore: number, newCoins: number, newCorrectAnswers: number): void {
     const currentState = this.gameStateSubject.value;
     const nextIndex = currentState.currentQuestionIndex + 1;
     
     if (nextIndex >= currentState.questions.length) {
-      this.endGame(newScore);
+      this.endGame(newScore, newCorrectAnswers);
     } else {
       const updatedState: GameState = {
         ...currentState,
@@ -127,6 +132,7 @@ export class GameService {
         currentQuestionIndex: nextIndex,
         score: newScore,
         coins: newCoins,
+        correctAnswers: newCorrectAnswers,
         usedHints: { easy: false, medium: false, hard: false } // Reset hints for new question
       };
       
@@ -184,45 +190,51 @@ export class GameService {
   // New method to manually move to next question
   moveToNextQuestionManually(): void {
     const currentState = this.gameStateSubject.value;
-    this.moveToNextQuestion(currentState.score, currentState.coins);
+    this.moveToNextQuestion(currentState.score, currentState.coins, currentState.correctAnswers);
   }
 
-  private endGame(finalScore?: number): void {
+  private endGame(finalScore?: number, finalCorrectAnswers?: number): void {
     const currentState = this.gameStateSubject.value;
     const score = finalScore ?? currentState.score;
+    const correctAnswers = finalCorrectAnswers ?? currentState.correctAnswers;
     
     const updatedState: GameState = {
       ...currentState,
       score,
+      correctAnswers,
       gameStatus: 'finished'
     };
     
     this.updateGameState(updatedState);
-    this.saveScore(score, currentState.category, currentState.currentQuestionIndex);
+    this.saveScore(score, currentState.category, correctAnswers);
   }
 
   private updateGameState(newState: GameState): void {
     this.gameStateSubject.next(newState);
   }
 
-  private saveScore(score: number, category: GameCategory, questionsAnswered: number): void {
+  private saveScore(score: number, category: GameCategory, correctAnswers: number): void {
     const currentState = this.gameStateSubject.value;
     const timeSpent = Date.now() - currentState.timeStarted.getTime();
+    const username = currentState.username || 'Anonymous';
+    const totalQuestions = currentState.questions.length;
     
     const newScore: Score = {
       score,
+      username,
       category,
       date: new Date(),
       timeSpent,
-      questionsAnswered
+      questionsAnswered: correctAnswers,
+      totalQuestions
     };
 
     const scores = this.getStoredScores();
     scores.push(newScore);
     scores.sort((a, b) => b.score - a.score);
     
-    // Keep only top 10 scores per category
-    const categoryScores = scores.filter(s => s.category === category).slice(0, 10);
+    // Keep only top 100 scores per category
+    const categoryScores = scores.filter(s => s.category === category).slice(0, 100);
     const otherScores = scores.filter(s => s.category !== category);
     const finalScores = [...categoryScores, ...otherScores];
     
@@ -246,6 +258,8 @@ export class GameService {
     try {
       return JSON.parse(stored).map((score: any) => ({
         ...score,
+        username: score.username || 'Anonymous',
+        totalQuestions: score.totalQuestions || 0,
         date: new Date(score.date)
       }));
     } catch {
@@ -260,11 +274,13 @@ export class GameService {
       currentQuestionIndex: 0,
       score: 0,
       coins: this.gameConfig.startingCoins,
+      correctAnswers: 0,
       usedHints: { easy: false, medium: false, hard: false },
       timeStarted: new Date(),
-      category: currentState.category,
+      category: currentState.category || 'movies',
       questions: [],
-      gameStatus: 'playing'
+      gameStatus: 'playing',
+      username: currentState.username
     };
     
     this.gameStateSubject.next(resetState);

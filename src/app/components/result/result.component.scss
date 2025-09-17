@@ -1,95 +1,298 @@
 .result-container {
+  --padding-top: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
   padding: 20px;
+}
+
+.header {
   text-align: center;
-  
-  .header {
-    margin-bottom: 30px;
-    
-    h1 {
-      font-size: 2rem;
+  color: white;
+  margin-bottom: 30px;
+
+  .main-header {
+    font-size: 2.2em;
+    font-weight: bold;
+    margin: 16px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .sub-header {
+    font-size: 1.1em;
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    .stat-icon {
+      font-size: 2.5em;
       margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      font-size: 1.5em;
+      font-weight: bold;
       color: #333;
     }
-    
-    h2 {
-      font-size: 1.2rem;
-      color: #666;
-      font-weight: normal;
+
+    &.correct-answers { border-left: 4px solid #28a745; }
+    &.score { border-left: 4px solid #ffc107; }
+    &.time { border-left: 4px solid #17a2b8; }
+    &.position { border-left: 4px solid #6f42c1; }
+  }
+}
+
+.performance-message {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+  .message-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  .message-text {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 600;
+  }
+}
+
+.category-tabs {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+  ion-segment {
+    --background: transparent;
+    --color: #666;
+    --color-checked: #667eea;
+
+    ion-segment-button {
+      --border-radius: 12px;
+      --color-checked: #667eea;
+      --indicator-background: #667eea;
+
+      ion-icon {
+        font-size: 1.2em;
+        margin-right: 5px;
+      }
+
+      ion-label {
+        font-weight: 600;
+        font-size: 0.95em;
+      }
     }
   }
-  
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 30px;
-    
-    .stat-card {
-      background: #f8f9fa;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      
-      .stat-icon {
-        font-size: 2rem;
-        margin-bottom: 10px;
+}
+
+.leaderboard-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+  .leaderboard-title {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.top-30-list {
+  max-height: 500px;
+  overflow-y: auto;
+
+  ion-list {
+    --background: transparent;
+  }
+
+  .score-item {
+    --background: white;
+    --border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    &:first-child {
+      border-left: 4px solid #ffd700;
+    }
+
+    &:nth-child(2) {
+      border-left: 4px solid #c0c0c0;
+    }
+
+    &:nth-child(3) {
+      border-left: 4px solid #cd7f32;
+    }
+
+    ion-avatar.rank-avatar {
+      --border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+
+      .rank-number {
+        color: white;
+        font-weight: bold;
+        font-size: 1.1em;
       }
-      
-      .stat-label {
-        font-size: 0.9rem;
-        color: #666;
-        margin-bottom: 5px;
-      }
-      
-      .stat-value {
-        font-size: 1.5rem;
+    }
+
+    .score-username {
+      font-weight: 600;
+      color: #333;
+      font-size: 1em;
+    }
+
+    .score-details {
+      text-align: right;
+      color: #666;
+
+      .score-value {
         font-weight: bold;
         color: #333;
+        font-size: 1.1em;
+        margin-bottom: 2px;
+      }
+
+      .score-date {
+        font-size: 0.85em;
       }
     }
   }
-  
-  .performance-message {
-    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    font-weight: 500;
+}
+
+.empty-state {
+  text-align: center;
+  color: #666;
+  padding: 40px 20px;
+  font-size: 1.1em;
+}
+
+.user-position-section {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 20px;
+
+  h4 {
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
   }
-  
-  .action-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    
-    .btn {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+
+  .user-position-item {
+    --background: transparent;
+    --border-radius: 8px;
+
+    ion-label {
+      color: #666;
       font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      
-      &.btn-primary {
-        background: #007bff;
-        color: white;
-        
-        &:hover {
-          background: #0056b3;
-        }
+    }
+
+    .user-score {
+      color: #667eea;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 300px;
+  margin: 0 auto;
+
+  ion-button {
+    --border-radius: 12px;
+    --height: 50px;
+    font-weight: 600;
+
+    &.play-again-btn {
+      --background: #28a745;
+      --color: white;
+
+      &:hover {
+        --background: #218838;
       }
-      
-      &.btn-secondary {
-        background: #28a745;
-        color: white;
-        
-        &:hover {
-          background: #1e7e34;
-        }
+    }
+
+    &.menu-btn {
+      --background: transparent;
+      --border-color: rgba(255, 255, 255, 0.3);
+      --color: white;
+
+      &:hover {
+        --border-color: white;
       }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .top-30-list {
+    max-height: 400px;
+  }
+
+  .action-buttons {
+    ion-button {
+      --height: 45px;
     }
   }
 }

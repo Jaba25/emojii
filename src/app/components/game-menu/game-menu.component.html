@@ -15,8 +15,29 @@
       <p class="subtitle">აირჩიე კატეგორია და შექმენი რეკორდი!</p>
     </div>
 
-    <!-- Category Cards -->
-    <div class="categories-grid">
+    <!-- Username Input Section -->
+    <div *ngIf="!username" class="username-section">
+      <h2 class="username-title">შეყვანე შენი სახელი</h2>
+      <ion-item lines="full">
+        <ion-input 
+          [(ngModel)]="usernameInput" 
+          placeholder="შენი სახელი..." 
+          type="text"
+          class="username-input"
+          (keyup.enter)="setUsername()">
+        </ion-input>
+      </ion-item>
+      <ion-button 
+        expand="block" 
+        color="primary"
+        (click)="setUsername()"
+        class="confirm-username-btn">
+        არჩევა
+      </ion-button>
+    </div>
+
+    <!-- Category Cards Section -->
+    <div *ngIf="username" class="categories-grid">
       
       <!-- Movies Category -->
       <ion-card 
@@ -65,8 +86,13 @@
 
     </div>
 
+    <!-- Username Display -->
+    <div *ngIf="username" class="username-display">
+      <p>მომხმარებელი: {{ username }}</p>
+    </div>
+
     <!-- High Scores Button -->
-    <div class="footer-section">
+    <div *ngIf="username" class="footer-section">
       <ion-button 
         expand="block" 
         fill="outline" 

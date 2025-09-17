@@ -45,6 +45,80 @@
   }
 }
 
+.username-section {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255,255,255,0.4);
+
+  .username-title {
+    text-align: center;
+    color: #2d3748;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+  }
+
+  ion-item {
+    --border-radius: 12px;
+    --background: #f7fafc;
+    --border-color: #e2e8f0;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .username-input {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    font-size: 1.1em;
+    color: #2d3748;
+
+    ::placeholder {
+      color: #a0aec0;
+      opacity: 1;
+    }
+  }
+
+  .confirm-username-btn {
+    --border-radius: 12px;
+    height: 48px;
+    font-weight: 600;
+    --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+
+    &:hover {
+      --box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    }
+  }
+}
+
+.username-display {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  p {
+    margin: 0;
+    color: #2d3748;
+    font-weight: 500;
+    font-size: 1em;
+  }
+
+  ion-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    font-size: 0.85em;
+  }
+}
+
 .categories-grid {
   display: grid;
   grid-template-columns: 1fr;

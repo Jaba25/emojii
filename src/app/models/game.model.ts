@@ -16,6 +16,7 @@ export interface GameState {
   currentQuestionIndex: number;
   score: number;
   coins: number;
+  correctAnswers: number;
   usedHints: {
     easy: boolean;
     medium: boolean;
@@ -25,14 +26,17 @@ export interface GameState {
   category: GameCategory;
   questions: Question[];
   gameStatus: 'playing' | 'finished' | 'paused';
+  username?: string;
 }
 
 export interface Score {
   score: number;
+  username: string;
   category: GameCategory;
   date: Date;
   timeSpent: number;
   questionsAnswered: number;
+  totalQuestions: number;
 }
 
 export type GameCategory = 'movies' | 'series' | 'songs';

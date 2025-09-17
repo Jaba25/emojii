@@ -1,45 +1,111 @@
 <div class="result-container">
-  <div class="header">
-    <h1>?? Game Results</h1>
-    <h2>??????? ????????</h2>
+  <!-- Game Results Header (shown when not just viewing scores) -->
+  <div *ngIf="!showScores" class="header">
+    <h1 class="main-header">🎯 თამაშის შედეგები</h1>
+    <h2 class="sub-header">შენი შედეგები - {{username}}</h2>
   </div>
-  
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-icon">?</div>
-      <div class="stat-label">Correct Answers</div>
-      <div class="stat-value">{{totalCorrectAnswers}}/50</div>
+
+  <!-- Leaderboard Header (shown when viewing scores from menu) -->
+  <div *ngIf="showScores" class="header">
+    <h1 class="main-header">🏆 ლიდერბორდი</h1>
+    <p class="sub-header">საუკეთესო შედეგები კატეგორიებში</p>
+  </div>
+
+  <!-- Stats Grid (only for game results) -->
+  <div *ngIf="!showScores" class="stats-grid">
+    <div class="stat-card correct-answers">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-label">სწორი პასუხები</div>
+      <div class="stat-value">{{totalCorrectAnswers}} / {{totalQuestions}}</div>
     </div>
     
-    <div class="stat-card">
-      <div class="stat-icon">??</div>
-      <div class="stat-label">Accuracy</div>
-      <div class="stat-value">{{accuracy}}%</div>
+    <div class="stat-card score">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-label">შეძენილი ქულები</div>
+      <div class="stat-value">{{score}}</div>
     </div>
     
-    <div class="stat-card">
-      <div class="stat-icon">??</div>
-      <div class="stat-label">Total Time</div>
+    <div class="stat-card time">
+      <div class="stat-icon">⏱️</div>
+      <div class="stat-label">საერთო დრო</div>
       <div class="stat-value">{{formatTime(totalTime)}}</div>
     </div>
     
-    <div class="stat-card">
-      <div class="stat-icon">??</div>
-      <div class="stat-label">Leaderboard</div>
-      <div class="stat-value">#{{userLeaderboardPosition}}</div>
+    <div class="stat-card position">
+      <div class="stat-icon">📊</div>
+      <div class="stat-label">შენი პოზიცია</div>
+      <div class="stat-value">#{{getUserPositionDisplay()}}</div>
     </div>
   </div>
-  
-  <div class="performance-message">
-    <p>{{getPerformanceMessage()}}</p>
+
+  <!-- Performance Message (only for game results) -->
+  <div *ngIf="!showScores" class="performance-message">
+    <div class="message-icon">{{getPerformanceIcon()}}</div>
+    <p class="message-text">{{getPerformanceMessage()}}</p>
   </div>
-  
+
+  <!-- Category Tabs for Leaderboard -->
+  <div class="category-tabs">
+    <ion-segment [(ngModel)]="selectedCategory" (ionChange)="onCategoryChange()">
+      <ion-segment-button value="movies">
+        <ion-icon name="film-outline" slot="start"></ion-icon>
+        <ion-label>ფილმები</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="series">
+        <ion-icon name="tv-outline" slot="start"></ion-icon>
+        <ion-label>სერიალები</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="songs">
+        <ion-icon name="musical-notes-outline" slot="start"></ion-icon>
+        <ion-label>ფრაზები სიმღერებიდან</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Leaderboard Section -->
+  <div class="leaderboard-section">
+    <h3 class="leaderboard-title">ტოპ 30 - {{getCategoryTitle(selectedCategory)}} {{getCategoryIcon(selectedCategory)}}</h3>
+    
+    <!-- Top 30 List -->
+    <div class="top-30-list">
+      <ion-list>
+        <ion-item *ngFor="let score of top30Scores; let i = index" lines="inset" class="score-item">
+          <ion-avatar slot="start" class="rank-avatar">
+            <span class="rank-number">{{i + 1}}</span>
+          </ion-avatar>
+          <ion-label class="score-username">{{score.username}}</ion-label>
+          <div class="score-details">
+            <div class="score-value">{{score.score}}</div>
+            <div class="score-date">{{formatDate(score.date)}}</div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="top30Scores.length === 0" class="empty-state">
+      <p>ჯერ არავინ ითამაშა ამ კატეგორიაში</p>
+    </div>
+
+    <!-- User Position (if not in top 30 and game results) -->
+    <div *ngIf="!showScores && userRank > 30" class="user-position-section">
+      <h4>შენი შედეგი</h4>
+      <ion-item class="user-position-item">
+        <ion-label>პოზიცია: 30+</ion-label>
+        <div class="user-score">ქულა: {{score}}</div>
+      </ion-item>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
   <div class="action-buttons">
-    <button (click)="shareResults()" class="btn btn-primary">
-      ?? Share Results
-    </button>
-    <button (click)="playAgain()" class="btn btn-secondary">
-      ?? Play Again
-    </button>
+    <ion-button *ngIf="!showScores" expand="block" color="primary" (click)="playAgain()" class="play-again-btn">
+      <ion-icon name="play-outline" slot="start"></ion-icon>
+      ითამაშე კიდევ
+    </ion-button>
+    <ion-button expand="block" fill="outline" color="medium" (click)="goToMenu()" class="menu-btn">
+      <ion-icon name="home-outline" slot="start"></ion-icon>
+      მენიუში
+    </ion-button>
   </div>
 </div>
